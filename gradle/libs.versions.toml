@@ -1,0 +1,88 @@
+[versions]
+# Gradle Plugins
+gradleShadow = "9.6.1"
+indra = "4.2.0-SNAPSHOT"
+checkstyle = "13.10.0"
+gitSimpleSemver = "2.4.0"
+extraJavaModuleInfo = "1.14.2"
+
+# Libraries
+adventureAPI = "4.26.1"
+brigadier = "1.3.11"
+paperAPI = "1.21.11-R0.1-SNAPSHOT"
+configurate= "4.2.0"
+configurateNBT = "1.0.0"
+gson = "2.14.0"
+guava = "33.6.0-jre"
+chasm = "1.0.0"
+
+jetbrainsAnnotations = "26.1.0"
+jspecify = "1.0.1"
+checkerFramework = "4.2.2"
+
+# Testing
+junit = "6.1.2"
+
+[plugins]
+gradleShadow = { id = "com.gradleup.shadow", version.ref = "gradleShadow" }
+gitSimpleSemver = { id = "dev.hboyd.git-simple-semver", version.ref = "gitSimpleSemver" }
+indra = { id = "net.kyori.indra", version.ref = "indra" }
+
+[libraries]
+brigadier = { group = "com.mojang", name = "brigadier", version.ref = "brigadier" }
+paperAPI = { group = "io.papermc.paper", name = "paper-api", version.ref = "paperAPI" }
+configurateCore = { group = "org.spongepowered", name = "configurate-core", version.ref = "configurate" }
+configurateNBT = { group = "dev.hboyd", name = "configurate-nbt", version.ref = "configurateNBT" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
+chasm = { group = "dev.hboyd", name = "chasm-lib", version.ref = "chasm" }
+
+jetbrainsAnnotations = { group = "org.jetbrains", name = "annotations", version.ref = "jetbrainsAnnotations" }
+checkerFramework = { group = "org.checkerframework", name = "checker-qual", version.ref = "checkerFramework" }
+jspecify = { group = "org.jspecify", name = "jspecify", version.ref = "jspecify" }
+
+# Testing
+configurateHocon = { group = "org.spongepowered", name = "configurate-hocon", version.ref = "configurate" }
+junitJupiterApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
+junitJupiterEngine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
+junitPlatformLauncher = { group = "org.junit.platform", name = "junit-platform-launcher", version.ref = "junit" }
+
+# Adventure
+adventureAPI = { group = "net.kyori",  name = "adventure-api", version.ref = "adventureAPI" }
+adventureNBT = { group = "net.kyori",  name = "adventure-nbt", version.ref = "adventureAPI" }
+adventureSerializerConfigurate4 = { group = "net.kyori", name = "adventure-serializer-configurate4", version.ref = "adventureAPI" }
+adventureTextMiniMessage = { group = "net.kyori",  name = "adventure-text-minimessage", version.ref = "adventureAPI" }
+adventureTextSerializerCommons = { group = "net.kyori",  name = "adventure-text-serializer-commons", version.ref = "adventureAPI" }
+adventureTextSerializerGson = { group = "net.kyori",  name = "adventure-text-serializer-gson", version.ref = "adventureAPI" }
+adventureTextSerializerANSI = { group = "net.kyori",  name = "adventure-text-serializer-ansi", version.ref = "adventureAPI" }
+adventureTextSerializerLegacy = { group = "net.kyori",  name = "adventure-text-serializer-legacy", version.ref = "adventureAPI" }
+adventureTextSerializerPlain = { group = "net.kyori",  name = "adventure-text-serializer-plain", version.ref = "adventureAPI" }
+
+# Gradle Plugins
+indra = { module = "net.kyori:indra-common", version.ref = "indra" }
+indraLicenserSpotless = { module = "net.kyori:indra-licenser-spotless", version.ref = "indra" }
+extraJavaModuleInfo = { module = "org.gradlex:extra-java-module-info", version.ref = "extraJavaModuleInfo" }
+
+[bundles]
+adventureAPI = [
+    "adventureAPI",
+    "adventureNBT",
+    "adventureSerializerConfigurate4",
+    "adventureTextMiniMessage",
+    "adventureTextSerializerCommons",
+    "adventureTextSerializerGson",
+    "adventureTextSerializerANSI",
+    "adventureTextSerializerLegacy",
+    "adventureTextSerializerPlain",
+]
+
+# Build
+indra = [
+    "indra",
+    "indraLicenserSpotless"
+]
+
+junitJupiterRuntime = [
+    "junitJupiterEngine",
+    "junitPlatformLauncher"
+]

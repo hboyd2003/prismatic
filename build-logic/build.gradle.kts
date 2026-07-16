@@ -1,0 +1,24 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+plugins {
+    `kotlin-dsl`
+}
+
+dependencies {
+    compileOnly(files(libs::class.java.protectionDomain.codeSource.location))
+    implementation(libs.bundles.indra)
+    implementation(libs.extraJavaModuleInfo)
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+}
+
+kotlin {
+    target {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_25
+        }
+    }
+}
