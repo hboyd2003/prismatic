@@ -127,6 +127,21 @@ public sealed interface PaginatedListComponent extends ComponentLike, Buildable<
     IPaginatedListComponentItemFactory itemFactory();
 
     /**
+     * Send the first page as a system chat message to the given audience.
+     *
+     * @param audience an audience
+     */
+    void sendAsMessage(final Audience audience);
+
+    /**
+     * Send the given page as a system chat message to the given audience.
+     *
+     * @param page     the page
+     * @param audience an audience
+     */
+    void sendAsMessage(final int page, final Audience audience);
+
+    /**
      * Renders the first page with an empty audience.
      *
      * @return a component

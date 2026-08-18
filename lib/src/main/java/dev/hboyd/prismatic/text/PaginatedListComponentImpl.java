@@ -92,6 +92,16 @@ public final class PaginatedListComponentImpl implements PaginatedListComponent 
     }
 
     @Override
+    public void sendAsMessage(final Audience audience) {
+        this.sendAsMessage(0, audience);
+    }
+
+    @Override
+    public void sendAsMessage(final int page, final Audience audience) {
+        audience.sendMessage(this.render(page, audience));
+    }
+
+    @Override
     public Component asComponent() {
         return this.render();
     }
