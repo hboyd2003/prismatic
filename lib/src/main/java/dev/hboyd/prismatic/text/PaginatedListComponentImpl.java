@@ -132,7 +132,11 @@ public final class PaginatedListComponentImpl implements PaginatedListComponent 
 
         final ComponentBuilder<TextComponent, TextComponent.Builder> builder = Component.text();
 
-        builder.append(this.title);
+        builder.append(ComponentSpacer.alignCenter(this.title,
+                this.style.spacingGlyph(),
+                this.style.widthProvider(),
+                UIContainer.CHAT.width(),
+                Locale.getDefault())); // TODO: derive locale from audience
         final int firstItem = this.style.itemsPerPage() * page;
 
         int lastItem = firstItem + this.style.itemsPerPage();
@@ -184,7 +188,8 @@ public final class PaginatedListComponentImpl implements PaginatedListComponent 
             }
         }
 
-        final int minPage = Math.max(Math.min(page - (this.style.pageSelectorCount() / 2), lastPage - this.style.pageSelectorCount()), 0);
+        final int minPage = Math.max(Math.min(page - (this.style.pageSelectorCount() / 2),
+                lastPage - this.style.pageSelectorCount()), 0);
         final int maxPage = Math.min(lastPage, minPage + this.style.pageSelectorCount());
 
         final List<Component> pageSelectors = new ArrayList<>();
