@@ -53,10 +53,6 @@ import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Objects;
 
-
-// TODO: Add versioning field
-// TODO: Add more managed way to do migration
-
 /**
  * An abstract self-contained simplified Configurate config.
  *

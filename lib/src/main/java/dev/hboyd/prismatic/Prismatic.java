@@ -18,8 +18,6 @@
 
 package dev.hboyd.prismatic;
 
-// TODO: Standardize JavaDoc verbiage, tone and style.
-
 /**
  * Prismatic is a general purpose library for Minecraft: Java Edition.
  */
