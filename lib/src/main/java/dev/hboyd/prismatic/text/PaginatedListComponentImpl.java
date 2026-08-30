@@ -132,7 +132,9 @@ public final class PaginatedListComponentImpl implements PaginatedListComponent 
 
         final ComponentBuilder<TextComponent, TextComponent.Builder> builder = Component.text();
 
-        builder.append(ComponentSpacer.alignCenter(this.title,
+        builder.append(ComponentSpacer.alignCenter(this.style.titlePrefix()
+                        .append(this.title)
+                        .append(this.style.titleSuffix()),
                 this.style.spacingGlyph(),
                 this.style.widthProvider(),
                 UIContainer.CHAT.width(),
