@@ -56,6 +56,7 @@ dependencies {
     testImplementation(libs.jspecify)
     testImplementation(libs.jetbrainsAnnotations)
     testImplementation(libs.checkerFramework)
+    testImplementation(libs.bundles.junitJupiterCompile)
     testRuntimeOnly(libs.bundles.junitJupiterRuntime)
 }
 

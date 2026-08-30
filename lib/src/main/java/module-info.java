@@ -22,4 +22,5 @@ module prismatic.prismatic.lib {
     exports dev.hboyd.prismatic.brigadier;
     exports dev.hboyd.prismatic.configurate;
     exports dev.hboyd.prismatic.text;
+    exports dev.hboyd.prismatic.key;
 }
