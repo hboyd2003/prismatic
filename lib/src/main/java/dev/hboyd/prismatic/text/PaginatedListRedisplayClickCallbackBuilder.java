@@ -23,7 +23,6 @@ import net.kyori.adventure.builder.AbstractBuilder;
 import net.kyori.adventure.text.ComponentLike;
 import net.kyori.adventure.text.VirtualComponent;
 import net.kyori.adventure.text.event.ClickCallback;
-import net.kyori.adventure.util.Buildable;
 import org.jetbrains.annotations.Contract;
 import org.jspecify.annotations.Nullable;
 
@@ -34,7 +33,7 @@ import org.jspecify.annotations.Nullable;
  * @see PaginatedListComponent
  * @see ClickCallback
  */
-public sealed interface PaginatedListRedisplayClickCallbackBuilder extends AbstractBuilder<VirtualComponent>, Buildable.Builder<VirtualComponent> permits PaginatedListRedisplayClickCallbackBuilderImpl {
+public sealed interface PaginatedListRedisplayClickCallbackBuilder extends AbstractBuilder<VirtualComponent> permits PaginatedListRedisplayClickCallbackBuilderImpl {
 
     /**
      * Create a builder for a paginated list re-display callback.

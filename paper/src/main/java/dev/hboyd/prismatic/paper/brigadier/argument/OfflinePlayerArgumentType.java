@@ -30,8 +30,8 @@ import io.papermc.paper.command.brigadier.MessageComponentSerializer;
 import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
 import io.papermc.paper.command.brigadier.argument.CustomArgumentType;
 import io.papermc.paper.command.brigadier.argument.resolvers.PlayerProfileListResolver;
+import net.kyori.adventure.builder.AbstractBuilder;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.util.Buildable;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.Contract;
@@ -46,7 +46,7 @@ import java.util.function.Supplier;
 /**
  * An argument for {@link OfflinePlayer}s.
  */
-public final class OfflinePlayerArgumentType implements CustomArgumentType<OfflinePlayerArgumentTypeResolver, PlayerProfileListResolver>, Buildable<OfflinePlayerArgumentType, OfflinePlayerArgumentType.Builder> {
+public final class OfflinePlayerArgumentType implements CustomArgumentType<OfflinePlayerArgumentTypeResolver, PlayerProfileListResolver> {
     public static final OfflinePlayerArgumentType OFFLINE_PLAYERS =
             new OfflinePlayerArgumentType(() -> Arrays.asList(Bukkit.getOfflinePlayers()),
                     null,
@@ -134,7 +134,11 @@ public final class OfflinePlayerArgumentType implements CustomArgumentType<Offli
         return OFFLINE_PLAYERS.toBuilder();
     }
 
-    @Override
+    /**
+     * Create a builder from this argument type.
+     *
+     * @return a builder
+     */
     public Builder toBuilder() {
         return new Builder(this);
     }
@@ -157,7 +161,7 @@ public final class OfflinePlayerArgumentType implements CustomArgumentType<Offli
     /**
      * A builder for a {@link OfflinePlayerArgumentType}.
      */
-    public static final class Builder implements Buildable.Builder<OfflinePlayerArgumentType> {
+    public static final class Builder implements AbstractBuilder<OfflinePlayerArgumentType> {
         private Supplier<Collection<OfflinePlayer>> offlinePlayerSupplier;
         private @Nullable Predicate<OfflinePlayer> offlinePlayerFilter;
         private @Nullable SimpleCommandExceptionType notMatchedException;

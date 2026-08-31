@@ -22,7 +22,6 @@ import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.builder.AbstractBuilder;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.ComponentLike;
-import net.kyori.adventure.util.Buildable;
 import org.jetbrains.annotations.Contract;
 
 import java.util.List;
@@ -35,7 +34,7 @@ import java.util.Objects;
  * @see IPaginatedListComponentItemFactory
  * @see PaginatedListRedisplayClickCallbackBuilder
  */
-public sealed interface PaginatedListComponent extends ComponentLike, Buildable<PaginatedListComponent, PaginatedListComponent.Builder> permits PaginatedListComponentImpl {
+public sealed interface PaginatedListComponent extends ComponentLike permits PaginatedListComponentImpl {
     /**
      * Create a paginated list component with the given title style and item factory.
      *
@@ -174,6 +173,13 @@ public sealed interface PaginatedListComponent extends ComponentLike, Buildable<
     Component render(final int page, final Audience audience);
 
     /**
+     * Create a builder from this component.
+     *
+     * @return a builder
+     */
+    Builder toBuilder();
+
+    /**
      * Creates a builder for a {@link PaginatedListComponent}.
      *
      * @return a builder
@@ -185,7 +191,7 @@ public sealed interface PaginatedListComponent extends ComponentLike, Buildable<
     /**
      * A builder for {@link PaginatedListComponent}s.
      */
-    sealed interface Builder extends AbstractBuilder<PaginatedListComponent>, Buildable.Builder<PaginatedListComponent> permits PaginatedListComponentImpl.BuilderImpl {
+    sealed interface Builder extends AbstractBuilder<PaginatedListComponent> permits PaginatedListComponentImpl.BuilderImpl {
 
         /**
          * Set the title.

@@ -22,7 +22,6 @@ import dev.hboyd.chasm.font.StyledGlyph;
 import dev.hboyd.chasm.text.TextWidthProvider;
 import net.kyori.adventure.builder.AbstractBuilder;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.util.Buildable;
 import org.jetbrains.annotations.Contract;
 
 /**
@@ -30,7 +29,7 @@ import org.jetbrains.annotations.Contract;
  *
  * @see GroupedComponent
  */
-public interface GroupedComponentStyle extends Buildable<GroupedComponentStyle, GroupedComponentStyle.Builder> {
+public interface GroupedComponentStyle {
 
     /**
      * Get the default grouped component style.
@@ -83,9 +82,16 @@ public interface GroupedComponentStyle extends Buildable<GroupedComponentStyle, 
     Component titleSuffix();
 
     /**
+     * Create a builder from this style.
+     *
+     * @return a builder
+     */
+    Builder toBuilder();
+
+    /**
      * A builder for {@link GroupedComponentStyle}s.
      */
-    sealed interface Builder extends AbstractBuilder<GroupedComponentStyle>, Buildable.Builder<GroupedComponentStyle> permits GroupedComponentStyleImpl.BuilderImpl {
+    sealed interface Builder extends AbstractBuilder<GroupedComponentStyle> permits GroupedComponentStyleImpl.BuilderImpl {
         /**
          * Set the width provider.
          *

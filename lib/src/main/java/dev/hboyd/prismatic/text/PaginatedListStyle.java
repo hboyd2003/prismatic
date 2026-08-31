@@ -23,7 +23,6 @@ import dev.hboyd.chasm.text.TextWidthProvider;
 import net.kyori.adventure.builder.AbstractBuilder;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.JoinConfiguration;
-import net.kyori.adventure.util.Buildable;
 import org.jetbrains.annotations.Contract;
 
 /**
@@ -31,7 +30,7 @@ import org.jetbrains.annotations.Contract;
  *
  * @see PaginatedListComponent
  */
-public interface PaginatedListStyle extends Buildable<PaginatedListStyle, PaginatedListStyle.Builder> {
+public interface PaginatedListStyle {
     /**
      * Get the default style.
      *
@@ -104,13 +103,17 @@ public interface PaginatedListStyle extends Buildable<PaginatedListStyle, Pagina
      */
     JoinConfiguration pageSelectorStyle();
 
-    @Override
+    /**
+     * Create a builder from this style.
+     *
+     * @return a builder
+     */
     Builder toBuilder();
 
     /**
      * A builder for {@link PaginatedListStyle}s.
      */
-    sealed interface Builder extends AbstractBuilder<PaginatedListStyle>, Buildable.Builder<PaginatedListStyle> permits PaginatedListStyleImpl.BuilderImpl {
+    sealed interface Builder extends AbstractBuilder<PaginatedListStyle> permits PaginatedListStyleImpl.BuilderImpl {
         /**
          * Set the width provider.
          *

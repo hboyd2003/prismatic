@@ -18,9 +18,9 @@
 
 package dev.hboyd.prismatic.text;
 
+import net.kyori.adventure.builder.AbstractBuilder;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.ComponentLike;
-import net.kyori.adventure.util.Buildable;
 import org.jetbrains.annotations.Contract;
 
 import java.util.Objects;
@@ -30,7 +30,7 @@ import java.util.Objects;
  *
  * @see GroupedComponentStyle
  */
-public sealed interface GroupedComponent extends ComponentLike, Buildable<GroupedComponent, GroupedComponent.Builder> permits GroupedComponentImpl {
+public sealed interface GroupedComponent extends ComponentLike permits GroupedComponentImpl {
     /**
      * Create a grouped component with the given title, content and formated with the given style.
      *
@@ -119,6 +119,13 @@ public sealed interface GroupedComponent extends ComponentLike, Buildable<Groupe
     GroupedComponent style(final GroupedComponentStyle style);
 
     /**
+     * Create a builder from this component.
+     *
+     * @return a builder
+     */
+    Builder toBuilder();
+
+    /**
      * Create an empty builder.
      *
      * @return a builder
@@ -130,7 +137,7 @@ public sealed interface GroupedComponent extends ComponentLike, Buildable<Groupe
     /**
      * A builder for a {@link GroupedComponent}.
      */
-    sealed interface Builder extends Buildable.Builder<GroupedComponent> permits GroupedComponentImpl.BuilderImpl {
+    sealed interface Builder extends AbstractBuilder<GroupedComponent> permits GroupedComponentImpl.BuilderImpl {
 
         /**
          * Set the title.
