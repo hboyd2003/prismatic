@@ -1,7 +1,7 @@
 /**
  * Prismatic is a general purpose library for Minecraft: Java Edition
  */
-module prismatic.prismatic.lib {
+module dev.hboyd.prismatic.lib {
     requires transitive brigadier;
     requires transitive chasm.chasm.lib.main;
     requires transitive configurate.nbt;
