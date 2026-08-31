@@ -104,8 +104,7 @@ public sealed interface PathedKey extends Key, Iterable<PathedKey> permits Pathe
      * Create a pathed key.
      *
      * <p>This will parse {@code string} as a key, using the given character as a separator between the namespace and
-     * the value. The value will be split into elements using the given element delimiter. Delimiters and {@code -} can
-     * be escaped with a {@code -}.</p>
+     * the value. The value will be split into elements using the given element delimiter.</p>
      *
      * <p>The namespace is optional. If you do not provide one (for example, if you provide just {@code player} or
      * {@code :player} as the string) then {@link #MINECRAFT_NAMESPACE} will be used as a namespace and {@code string}
@@ -377,8 +376,7 @@ public sealed interface PathedKey extends Key, Iterable<PathedKey> permits Pathe
     char elementDelimiter();
 
     /**
-     * Create a pathed key with the same namespace and value but with the given element delimiter. Characters in the
-     * value which match the given element delimiter are escaped.
+     * Create a pathed key with the same namespace and value but with the given element delimiter.
      *
      * <p>Elements which already contain the given element delimiter will be split into separate elements.</p>
      *
