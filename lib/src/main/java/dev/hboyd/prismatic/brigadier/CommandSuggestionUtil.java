@@ -38,7 +38,7 @@ public final class CommandSuggestionUtil {
     /**
      * Pattern that matches any non-alphanumeric ASCII character.
      */
-    public static final Pattern NON_ASCII_ALPHANUMERIC = Pattern.compile("[^A-z|0-9]");
+    public static final Pattern NON_ASCII_ALPHANUMERIC = Pattern.compile("[^A-Za-z0-9]");
 
     /**
      * Matches text possibly surrounded by quotes.
