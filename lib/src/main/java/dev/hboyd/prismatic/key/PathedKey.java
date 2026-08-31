@@ -251,7 +251,7 @@ public sealed interface PathedKey extends Key, Iterable<PathedKey> permits Pathe
      * @return a pathed key
      * @throws IndexOutOfBoundsException when no parent N exists
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(pure = true)
     PathedKey parent(final int n) throws IndexOutOfBoundsException;
 
     /**
