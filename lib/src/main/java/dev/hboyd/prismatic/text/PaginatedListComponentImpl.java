@@ -141,7 +141,7 @@ public final class PaginatedListComponentImpl implements PaginatedListComponent 
                 Locale.getDefault())); // TODO: derive locale from audience
         final int firstItem = this.style.itemsPerPage() * page;
 
-        int lastItem = firstItem + this.style.itemsPerPage();
+        int lastItem = firstItem + this.style.itemsPerPage() - 1;
         while (!this.itemFactory.isAvailable(lastItem, audience))
             lastItem--;
 
