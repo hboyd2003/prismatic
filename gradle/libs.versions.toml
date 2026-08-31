@@ -1,6 +1,5 @@
 [versions]
 # Gradle Plugins
-gradleShadow = "9.6.1"
 indra = "4.2.0-SNAPSHOT"
 checkstyle = "14.1.0"
 gitSimpleSemver = "2.4.0"
@@ -24,7 +23,6 @@ checkerFramework = "4.2.2"
 junit = "6.1.2"
 
 [plugins]
-gradleShadow = { id = "com.gradleup.shadow", version.ref = "gradleShadow" }
 gitSimpleSemver = { id = "dev.hboyd.git-simple-semver", version.ref = "gitSimpleSemver" }
 indra = { id = "net.kyori.indra", version.ref = "indra" }
 
