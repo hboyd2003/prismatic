@@ -21,7 +21,6 @@ package dev.hboyd.prismatic.paper.configurate.serializer;
 import org.bukkit.NamespacedKey;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.spongepowered.configurate.ConfigurationNode;
-import org.spongepowered.configurate.ConfigurationOptions;
 import org.spongepowered.configurate.serialize.SerializationException;
 import org.spongepowered.configurate.serialize.TypeSerializer;
 
@@ -45,10 +44,5 @@ public class NamespacedKeySerializer implements TypeSerializer<NamespacedKey> {
     public void serialize(final Type type, @Nullable final NamespacedKey namespacedKey, final ConfigurationNode node) throws SerializationException {
         if (namespacedKey == null) node.set("");
         else node.set(namespacedKey.asString());
-    }
-
-    @Override
-    public @Nullable NamespacedKey emptyValue(final Type specificType, final ConfigurationOptions options) {
-        return new NamespacedKey("", "");
     }
 }
