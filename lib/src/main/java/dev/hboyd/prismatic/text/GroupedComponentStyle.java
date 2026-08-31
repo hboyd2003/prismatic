@@ -29,7 +29,7 @@ import org.jetbrains.annotations.Contract;
  *
  * @see GroupedComponent
  */
-public interface GroupedComponentStyle {
+public sealed interface GroupedComponentStyle permits GroupedComponentStyleImpl {
 
     /**
      * Get the default grouped component style.
