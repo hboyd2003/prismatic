@@ -60,7 +60,7 @@ public abstract class AbstractPluginScheduler implements Closeable, Namespaced {
     }
 
     /**
-     * Get weather the scheduler has been closed or not.
+     * Get whether the scheduler has been closed or not.
      *
      * @return true if the scheduler is closed
      */

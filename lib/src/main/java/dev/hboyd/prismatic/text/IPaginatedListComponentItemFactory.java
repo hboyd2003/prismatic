@@ -115,11 +115,11 @@ public interface IPaginatedListComponentItemFactory {
     }
 
     /**
-     * Get weather an item exists at the given index and is visible to the given audience.
+     * Get whether an item exists at the given index and is visible to the given audience.
      *
      * @param index    an index
      * @param audience an audience
-     * @return weather an item is available
+     * @return whether an item is available
      */
     @ApiStatus.OverrideOnly
     boolean isAvailable(@Positive int index, Audience audience);

@@ -68,7 +68,7 @@ public final class TemporalAmountConstraints {
     }
 
     /**
-     * Constrains the annotated {@link TemporalAmount} to a positive amount ({@code N <= 0}) when being loaded by an
+     * Constrains the annotated {@link TemporalAmount} to a non-positive amount ({@code N <= 0}) when being loaded by an
      * {@link ObjectMapper}.
      */
     @Documented

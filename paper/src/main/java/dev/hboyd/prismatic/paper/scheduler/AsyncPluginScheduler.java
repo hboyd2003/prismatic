@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 /**
- * A wrapper for an {@link AsyncScheduler} that holds and provides the {@link Plugin} instance for it.
+ * A wrapper for an {@link AsyncScheduler} that provides the {@link Plugin} instance for it.
  */
 public final class AsyncPluginScheduler extends AbstractPluginScheduler {
     /**

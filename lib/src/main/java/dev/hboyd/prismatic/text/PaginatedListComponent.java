@@ -68,7 +68,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
     }
 
     /**
-     * Get an empty grouped component.
+     * Get an empty paginated list component.
      *
      * @return an empty component
      */
@@ -150,7 +150,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
     void sendAsMessage(final int page, final Audience audience);
 
     /**
-     * Renders the first page with an empty audience.
+     * Render the first page with an empty audience.
      *
      * @return a component
      */
@@ -158,7 +158,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
     Component render();
 
     /**
-     * Renders the first page for the given audience.
+     * Render the first page for the given audience.
      *
      * @param audience an audience
      * @return a component
@@ -167,7 +167,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
     Component render(final Audience audience);
 
     /**
-     * Renders the given page with an audience.
+     * Render the given page.
      *
      * @param page the page
      * @return a component
@@ -176,7 +176,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
     Component render(final int page);
 
     /**
-     * Renders the given page for the given audience.
+     * Render the given page for the given audience.
      *
      * @param page     the page
      * @param audience an audience

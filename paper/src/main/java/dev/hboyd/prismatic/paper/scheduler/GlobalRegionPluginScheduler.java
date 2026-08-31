@@ -114,8 +114,8 @@ public final class GlobalRegionPluginScheduler extends AbstractPluginScheduler {
      * period.
      *
      * @param task         the task to execute
-     * @param period       the period between each execution of the task
      * @param initialDelay the time to pass before the first execution of the task
+     * @param period       the period between each execution of the task
      * @return The {@link ScheduledTask} that represents the scheduled task
      */
     public ScheduledTask runAtFixedRate(final Consumer<ScheduledTask> task,

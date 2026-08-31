@@ -139,7 +139,7 @@ public final class CommandUtil {
      * }</p>
      *
      * @param translationKey a translation key
-     * @return a dynamic exception type that accepts three arguments
+     * @return a dynamic exception type that accepts four arguments
      */
     @Contract(value = "_ -> new", pure = true)
     public static Dynamic4CommandExceptionType dynamic4ExceptionOfTranslation(final String translationKey) {
@@ -158,7 +158,7 @@ public final class CommandUtil {
      * }</p>
      *
      * @param translationKey a translation key
-     * @return a dynamic exception type that accepts three arguments
+     * @return a dynamic exception type that accepts N arguments
      */
     @Contract(value = "_ -> new", pure = true)
     public static DynamicNCommandExceptionType dynamicNExceptionOfTranslation(final String translationKey) {

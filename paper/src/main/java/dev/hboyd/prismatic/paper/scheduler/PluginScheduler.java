@@ -287,7 +287,7 @@ public final class PluginScheduler extends AbstractPluginScheduler {
      * <p>This list contains async tasks that are being executed by separate
      * threads.</p>
      *
-     * @return Active workers
+     * @return the active workers
      */
     public @Unmodifiable List<BukkitWorker> getActiveWorkers() {
         return this.scheduler.getActiveWorkers().stream()
@@ -299,7 +299,7 @@ public final class PluginScheduler extends AbstractPluginScheduler {
      * Returns a list of pending tasks owned by the scheduler's owning plugin. The ordering of the tasks is not related
      * to their order of execution.
      *
-     * @return Active workers
+     * @return the pending tasks
      */
     public @Unmodifiable List<BukkitTask> getPendingTasks() {
         return this.scheduler.getPendingTasks().stream()
@@ -338,8 +338,7 @@ public final class PluginScheduler extends AbstractPluginScheduler {
      * <b>Asynchronous tasks should never access any API in Bukkit.</b> <b>Great care
      * should be taken to ensure the thread-safety of asynchronous tasks.</b>
      *
-     * <p>Returns a task that will run asynchronously after the specified number</p>
-     * of server ticks.
+     * <p>Returns a task that will run asynchronously after the specified number of server ticks.</p>
      *
      * @param task  the task to be run
      * @param delay the ticks to wait before running the task

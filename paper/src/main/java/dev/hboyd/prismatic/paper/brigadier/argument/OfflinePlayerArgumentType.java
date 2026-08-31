@@ -211,7 +211,7 @@ public final class OfflinePlayerArgumentType implements CustomArgumentType<Offli
         }
 
         /**
-         * Set weather to restrict the selector to one offline player.
+         * Set whether to restrict the selector to one offline player.
          *
          * @param singleSelector if the selector is restricted to one offline players
          * @return this builder

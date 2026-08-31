@@ -53,7 +53,7 @@ public final class RegionPluginScheduler extends AbstractPluginScheduler {
     }
 
     /**
-     * Schedule a task to be executed on the region which owns the location on the next tick.
+     * Schedule a task to be executed on the region which owns the chunk on the next tick.
      *
      * @param world  the world of the region that owns the task
      * @param chunkX the chunk X coordinate of the region that owns the task
@@ -80,7 +80,7 @@ public final class RegionPluginScheduler extends AbstractPluginScheduler {
     }
 
     /**
-     * Schedule a task to be executed on the region which owns the location on the next tick.
+     * Schedule a task to be executed on the region which owns the chunk on the next tick.
      *
      * @param world  the world of the region that owns the task
      * @param chunkX the chunk X coordinate of the region that owns the task
@@ -96,7 +96,7 @@ public final class RegionPluginScheduler extends AbstractPluginScheduler {
     }
 
     /**
-     * Schedule a task to be executed on the region which owns the location after the specified delay in ticks.
+     * Schedule a task to be executed on the region which owns the chunk after the specified delay in ticks.
      *
      * @param world      the world of the region that owns the task
      * @param chunkX     the chunk X coordinate of the region that owns the task
@@ -138,7 +138,7 @@ public final class RegionPluginScheduler extends AbstractPluginScheduler {
     }
 
     /**
-     * Schedule a task to be executed on the region which owns the location after the specified delay.
+     * Schedule a task to be executed on the region which owns the chunk after the specified delay.
      *
      * @param world  the world of the region that owns the task
      * @param chunkX the chunk X coordinate of the region that owns the task
@@ -183,7 +183,7 @@ public final class RegionPluginScheduler extends AbstractPluginScheduler {
     }
 
     /**
-     * Schedule a task to be executed on the region which owns the location starting on the next tick and repeating with
+     * Schedule a task to be executed on the region which owns the chunk starting on the next tick and repeating with
      * the specified period.
      *
      * @param world       the world of the region that owns the task
@@ -233,7 +233,7 @@ public final class RegionPluginScheduler extends AbstractPluginScheduler {
     }
 
     /**
-     * Schedule a task to be executed on the region which owns the location starting on the next tick and repeating with
+     * Schedule a task to be executed on the region which owns the chunk starting on the next tick and repeating with
      * the specified period.
      *
      * @param world  the world of the region that owns the task

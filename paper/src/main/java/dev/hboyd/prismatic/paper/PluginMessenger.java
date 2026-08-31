@@ -65,7 +65,7 @@ public class PluginMessenger implements Closeable, Namespaced {
      * Check if the specified channel is reserved and cannot be listened to.
      *
      * @param channelKey a plugin channel key
-     * @return weather the channel is reserved or not
+     * @return whether the channel is reserved or not
      */
     public boolean isReservedChannel(final Key channelKey) {
         return this.messenger.isReservedChannel(channelKey.asMinimalString());
@@ -79,12 +79,12 @@ public class PluginMessenger implements Closeable, Namespaced {
     }
 
     /**
-     * Check weather the specified plugin message listener registration is valid.
+     * Check whether the specified plugin message listener registration is valid.
      *
      * <p>A registration is considered valid if it has not been unregistered and that the plugin is still enabled.</p>
      *
      * @param registration a registration
-     * @return weather the registration is valid or not
+     * @return whether the registration is valid or not
      */
     public boolean isRegistrationValid(final PluginMessageListenerRegistration registration) {
         return this.messenger.isRegistrationValid(registration);
@@ -123,7 +123,7 @@ public class PluginMessenger implements Closeable, Namespaced {
      * Check if this messenger's plugin is registered to receive incoming messages through the requested channel.
      *
      * @param channelKey a plugin channel key
-     * @return weather the channel is registered or not
+     * @return whether the channel is registered or not
      */
     public boolean isIncomingChannelRegistered(final Key channelKey) {
         return this.messenger.isIncomingChannelRegistered(this.plugin, channelKey.asMinimalString());
@@ -181,10 +181,10 @@ public class PluginMessenger implements Closeable, Namespaced {
     }
 
     /**
-     * Get weather the given outgoing plugin channel is registered for this messenger's plugin.
+     * Get whether the given outgoing plugin channel is registered for this messenger's plugin.
      *
      * @param channelKey a plugin channel key
-     * @return weather the channel is registered
+     * @return whether the channel is registered
      */
     public boolean isOutgoingChannelRegistered(final Key channelKey) {
         return this.messenger.isOutgoingChannelRegistered(this.plugin, channelKey.asMinimalString());
