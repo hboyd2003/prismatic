@@ -153,9 +153,10 @@ public final class PaginatedListComponentImpl implements PaginatedListComponent 
             }
         }
 
-        if (this.itemFactory.isAvailable(this.style.itemsPerPage() + 1, audience))
+        if (this.itemFactory.isAvailable(this.style.itemsPerPage(), audience))
+            // If we have more items than can fit on one page
             builder.appendNewline().append(this.buildPageSelector(page, audience));
-        else // If we have more items than can fit on one page
+        else
             builder.appendNewline()
                     .append(ComponentSpacer.alignCenter(Component.empty(),
                             this.style.spacingGlyph(),
