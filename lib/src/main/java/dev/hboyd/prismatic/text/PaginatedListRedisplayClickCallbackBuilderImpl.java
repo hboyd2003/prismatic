@@ -57,7 +57,7 @@ public final class PaginatedListRedisplayClickCallbackBuilderImpl implements Pag
 
     @Override
     public PaginatedListRedisplayClickCallbackBuilder clickCallback(final @Nullable ClickCallback<Audience> clickCallback) {
-        this.clickCallback = Objects.requireNonNull(clickCallback, "clickCallback");
+        this.clickCallback = clickCallback;
         return this;
     }
 
