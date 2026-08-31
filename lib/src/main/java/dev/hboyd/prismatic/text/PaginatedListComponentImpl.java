@@ -203,7 +203,7 @@ public final class PaginatedListComponentImpl implements PaginatedListComponent 
             else {
                 final int finalI = i;
                 pageComponent = pageComponent.clickEvent(ClickEvent.callback(callbackAudience -> callbackAudience.sendMessage(
-                        this.render(finalI))));
+                        this.render(finalI, callbackAudience))));
             }
 
             pageSelectors.add(pageComponent);

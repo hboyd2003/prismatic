@@ -99,7 +99,7 @@ public final class PaginatedListRedisplayClickCallbackBuilderImpl implements Pag
                     ClickEvent.callback(callbackAudience -> {
                         if (this.clickCallback != null) this.clickCallback.accept(callbackAudience);
 
-                        callbackAudience.sendMessage(context.component.render(context.page));
+                        callbackAudience.sendMessage(context.component.render(context.page, callbackAudience));
                     }, this.callbackOptions));
         }
 
