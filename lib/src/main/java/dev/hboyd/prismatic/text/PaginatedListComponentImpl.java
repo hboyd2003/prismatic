@@ -142,13 +142,15 @@ public final class PaginatedListComponentImpl implements PaginatedListComponent 
         final int firstItem = this.style.itemsPerPage() * page;
 
         int lastItem = firstItem + this.style.itemsPerPage() - 1;
-        while (!this.itemFactory.isAvailable(lastItem, audience))
+        while (lastItem >= firstItem && !this.itemFactory.isAvailable(lastItem, audience))
             lastItem--;
 
-        // Add items
-        for (int i = firstItem; i <= lastItem; i++) {
-            final Component item = this.itemFactory.get(i, audience).asComponent();
-            builder.appendNewline().append(this.transformVirtualComponentCallback(item, page));
+        // Only add items if there is any to add
+        if (lastItem >= firstItem) {
+            for (int i = firstItem; i <= lastItem; i++) {
+                final Component item = this.itemFactory.get(i, audience).asComponent();
+                builder.appendNewline().append(this.transformVirtualComponentCallback(item, page));
+            }
         }
 
         if (this.itemFactory.isAvailable(this.style.itemsPerPage() + 1, audience))
