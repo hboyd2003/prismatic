@@ -55,7 +55,7 @@ public final class PaginatedListComponentImpl implements PaginatedListComponent 
     public PaginatedListComponent title(final Component title) {
         if (this.title.equals(title)) return this;
 
-        return new PaginatedListComponentImpl(Objects.requireNonNull(title, "itemFactory"),
+        return new PaginatedListComponentImpl(Objects.requireNonNull(title, "title"),
                 this.style,
                 this.itemFactory);
     }
