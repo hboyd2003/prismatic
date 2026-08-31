@@ -28,6 +28,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.lang.reflect.Type;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.LongAccumulator;
+import java.util.concurrent.atomic.LongAdder;
 
 /**
  * Configurate constraints for {@link Number}s.
@@ -39,6 +45,16 @@ public final class NumberConstraints {
 
     private NumberConstraints() {
         /* This utility class should not be instantiated */
+    }
+
+    private static int compare(final Number number, final long bound) {
+        return switch (number) {
+            case final BigDecimal bigDecimal -> bigDecimal.compareTo(BigDecimal.valueOf(bound));
+            case final BigInteger bigInteger -> bigInteger.compareTo(BigInteger.valueOf(bound));
+            case Byte _, Short _, Integer _, Long _, AtomicInteger _, AtomicLong _, LongAdder _, LongAccumulator _ ->
+                Long.compare(number.longValue(), bound);
+            default -> Double.compare(number.doubleValue(), bound);
+        };
     }
 
     /**
@@ -54,7 +70,7 @@ public final class NumberConstraints {
             @Override
             public Constraint<Number> make(final Positive data, final Type type) {
                 return value -> {
-                    if (value != null && value.longValue() <= 0)
+                    if (value != null && compare(value, 0L) <= 0)
                         throw new SerializationException(value + " must be positive");
                 };
             }
@@ -74,7 +90,7 @@ public final class NumberConstraints {
             @Override
             public Constraint<Number> make(final NonPositive data, final Type type) {
                 return value -> {
-                    if (value != null && value.longValue() > 0)
+                    if (value != null && compare(value, 0L) > 0)
                         throw new SerializationException(value + " must be positive");
                 };
             }
@@ -95,7 +111,7 @@ public final class NumberConstraints {
             @Override
             public Constraint<Number> make(final Negative data, final Type type) {
                 return value -> {
-                    if (value != null && value.longValue() >= 0)
+                    if (value != null && compare(value, 0L) >= 0)
                         throw new SerializationException(value + " must be negative");
                 };
             }
@@ -115,7 +131,7 @@ public final class NumberConstraints {
             @Override
             public Constraint<Number> make(final NonNegative data, final Type type) {
                 return value -> {
-                    if (value != null && value.longValue() < 0)
+                    if (value != null && compare(value, 0L) < 0)
                         throw new SerializationException(value + " must be positive");
                 };
             }
@@ -149,7 +165,7 @@ public final class NumberConstraints {
             @Override
             public Constraint<Number> make(final NumberConstraints.Bound data, final Type type) {
                 return value -> {
-                    if (value != null && (value.longValue() < data.min() || value.longValue() > data.max()))
+                    if (value != null && (compare(value, data.min()) < 0 || compare(value, data.max()) > 0))
                         throw new SerializationException(value.intValue() + " is outside the bounds of (" + data.min() + ", " + data.max() + ")");
                 };
             }
