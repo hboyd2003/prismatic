@@ -164,7 +164,7 @@ public final class TemporalAmountConstraints {
          *
          * @return the maximum amount
          */
-        long max() default Integer.MAX_VALUE;
+        long max() default Long.MAX_VALUE;
 
         /**
          * Get the chrono unit that the {@code min} and {@code max} are in.
