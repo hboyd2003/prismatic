@@ -226,7 +226,7 @@ public sealed interface PathedKey extends Key, Iterable<PathedKey> permits Pathe
      * @return a pathed key
      * @throws InvalidPathedKeyException when an element contains an invalid character
      */
-    @Contract(value = "_, _ -> new", pure = true)
+    @Contract(pure = true)
     PathedKey then(final char elementDelimiter, final String... elements) throws InvalidPathedKeyException;
 
     /**
@@ -239,7 +239,7 @@ public sealed interface PathedKey extends Key, Iterable<PathedKey> permits Pathe
      * @return a pathed key
      * @throws InvalidPathedKeyException when an element contains an invalid character
      */
-    @Contract(value = "_ -> new", pure = true)
+    @Contract(pure = true)
     default PathedKey then(final String... elements) throws InvalidPathedKeyException {
         return this.then(this.elementDelimiter(), elements);
     }
