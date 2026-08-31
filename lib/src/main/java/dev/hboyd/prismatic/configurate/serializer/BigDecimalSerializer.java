@@ -37,11 +37,15 @@ public class BigDecimalSerializer extends ScalarSerializer<BigDecimal> {
 
     @Override
     public BigDecimal deserialize(final Type type, final Object val) throws CoercionFailedException {
-        return switch (val) {
-            case final String string -> new BigDecimal(string);
-            case final Number number -> new BigDecimal(number.toString());
-            default -> throw new CoercionFailedException(type, val, "BigDecimal");
-        };
+        try {
+            return switch (val) {
+                case final String string -> new BigDecimal(string);
+                case final Number number -> new BigDecimal(number.toString());
+                default -> throw new CoercionFailedException(type, val, "BigDecimal");
+            };
+        } catch (final NumberFormatException _) {
+            throw new CoercionFailedException(type, val, "BigDecimal");
+        }
     }
 
     @Override
