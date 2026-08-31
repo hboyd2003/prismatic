@@ -25,7 +25,9 @@ import net.kyori.adventure.text.ComponentLike;
 import java.util.Objects;
 
 public final class GroupedComponentImpl implements GroupedComponent {
-    static final GroupedComponent EMPTY = new GroupedComponentImpl(Component.empty(), Component.empty(), GroupedComponentStyle.style());
+    static final GroupedComponent EMPTY = new GroupedComponentImpl(Component.empty(),
+            Component.empty(),
+            GroupedComponentStyle.style());
 
     private final ComponentLike title;
     private final ComponentLike content;
@@ -44,6 +46,8 @@ public final class GroupedComponentImpl implements GroupedComponent {
 
     @Override
     public GroupedComponent title(final ComponentLike title) {
+        if (this.title.equals(title)) return this;
+
         return new GroupedComponentImpl(title, this.content, this.style);
     }
 
@@ -54,6 +58,8 @@ public final class GroupedComponentImpl implements GroupedComponent {
 
     @Override
     public GroupedComponent content(final ComponentLike content) {
+        if (this.content.equals(content)) return this;
+
         return new GroupedComponentImpl(this.title, content, this.style);
     }
 
@@ -64,6 +70,8 @@ public final class GroupedComponentImpl implements GroupedComponent {
 
     @Override
     public GroupedComponent style(final GroupedComponentStyle style) {
+        if (this.style.equals(style)) return this;
+
         return new GroupedComponentImpl(this.title, this.content, style);
     }
 
