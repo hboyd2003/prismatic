@@ -16,23 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dev.hboyd.prismatic.paper.actionBar;
-
 /**
- * Represents a startable/stoppable action bar display.
+ * Self-contained action bars that provide functionality over time.
  */
-interface ActionBar {
-    /**
-     * Starts the action bar.
-     *
-     * @throws IllegalStateException when action bar is running or is finished
-     */
-    void start() throws IllegalStateException;
+@NullMarked
+package dev.hboyd.prismatic.paper.action_bar;
 
-    /**
-     * Stops the action bar.
-     *
-     * @throws IllegalStateException when action bar has not been started or is already stopped
-     */
-    void stop() throws IllegalStateException;
-}
+import org.jspecify.annotations.NullMarked;

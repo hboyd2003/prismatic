@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dev.hboyd.prismatic.paper.actionBar;
+package dev.hboyd.prismatic.paper.action_bar;
 
 import dev.hboyd.prismatic.paper.scheduler.PluginScheduler;
 import io.papermc.paper.util.Tick;
