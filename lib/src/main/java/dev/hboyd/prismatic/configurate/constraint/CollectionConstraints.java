@@ -89,7 +89,7 @@ public final class CollectionConstraints {
             @Override
             public Constraint<Collection> make(final Size data, final Type type) {
                 return value -> {
-                    if (value != null && value.size() < data.min() && value.size() > data.max())
+                    if (value != null && (value.size() < data.min() || value.size() > data.max()))
                         throw new SerializationException(value.size() + " is outside the collection bounds of (" + data.min() + ", " + data.max() + ")");
                 };
             }

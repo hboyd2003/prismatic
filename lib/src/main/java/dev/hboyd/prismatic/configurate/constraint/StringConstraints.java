@@ -110,7 +110,7 @@ public final class StringConstraints {
             @Override
             public Constraint<String> make(final StringConstraints.Length data, final Type type) {
                 return value -> {
-                    if (value != null && value.length() < data.min() && value.length() > data.max())
+                    if (value != null && (value.length() < data.min() || value.length() > data.max()))
                         throw new SerializationException(value.length() + " is outside the length bounds of (" + data.min() + ", " + data.max() + ")");
                 };
             }
