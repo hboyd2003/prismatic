@@ -244,7 +244,9 @@ public abstract class Config {
     }
 
     /**
-     * Load the config from the file. If an issue occurs while loading the current config will not change.
+     * Load the config from the file.
+     *
+     * <p>If an issue occurs while loading, the current loaded config will not change.</p>
      *
      * @param format whether to re-format the file or not
      * @throws IOException            when the config file directory doesn't exist
