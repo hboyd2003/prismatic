@@ -175,7 +175,7 @@ public abstract class Config {
      * @throws ConfigurateException   when an issue occurs writing the file
      * @throws SerializationException when unable to map values to a node
      */
-    @EnsuresNonNull({"configPath", "loader", "objectMapper", "defaultConfigNode"})
+    @EnsuresNonNull({"filePath", "loader", "objectMapper", "defaultConfigNode"})
     protected void initialize() throws IOException, ConfigurateException, SerializationException {
         if (this.initialized) throw new IllegalStateException("Config has already been initialized");
 
