@@ -22,6 +22,7 @@ import dev.hboyd.configurateNBT.serializer.BinaryTagSerializer;
 import dev.hboyd.prismatic.configurate.constraint.CollectionConstraints;
 import dev.hboyd.prismatic.configurate.constraint.NumberConstraints;
 import dev.hboyd.prismatic.configurate.constraint.StringConstraints;
+import dev.hboyd.prismatic.configurate.constraint.TemporalAmountConstraints;
 import dev.hboyd.prismatic.configurate.serializer.BigDecimalSerializer;
 import dev.hboyd.prismatic.configurate.serializer.InetSocketAddressSerializer;
 import net.kyori.adventure.serializer.configurate4.ConfigurateComponentSerializer;
@@ -50,6 +51,7 @@ import java.math.BigDecimal;
 import java.net.InetSocketAddress;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.temporal.TemporalAmount;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -75,6 +77,11 @@ public abstract class Config {
             .addConstraint(StringConstraints.NonEmpty.class, String.class, new StringConstraints.NonEmpty.Factory())
             .addConstraint(StringConstraints.NonBlank.class, String.class, new StringConstraints.NonBlank.Factory())
             .addConstraint(StringConstraints.Length.class, String.class, new StringConstraints.Length.Factory())
+            .addConstraint(TemporalAmountConstraints.Bound.class, TemporalAmount.class, new TemporalAmountConstraints.Bound.Factory())
+            .addConstraint(TemporalAmountConstraints.Positive.class, TemporalAmount.class, new TemporalAmountConstraints.Positive.Factory())
+            .addConstraint(TemporalAmountConstraints.NonPositive.class, TemporalAmount.class, new TemporalAmountConstraints.NonPositive.Factory())
+            .addConstraint(TemporalAmountConstraints.Negative.class, TemporalAmount.class, new TemporalAmountConstraints.Negative.Factory())
+            .addConstraint(TemporalAmountConstraints.NonNegative.class, TemporalAmount.class, new TemporalAmountConstraints.NonNegative.Factory())
             .build();
 
     private static final TypeSerializerCollection DEFAULT_TYPE_SERIALIZERS = TypeSerializerCollection.defaults()
