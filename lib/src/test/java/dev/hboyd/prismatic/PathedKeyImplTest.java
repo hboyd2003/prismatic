@@ -414,7 +414,7 @@ class PathedKeyImplTest {
         void doesNotMatchWhenNumberOfSplitElementsIsMoreThanItself() {
             final PathedKey key = PathedKey.of("namespace", "a.b");
 
-            assertFalse(key.endsWith("a.b.c.d"));
+            assertFalse(key.startsWith("a.b.c.d"));
         }
     }
 
