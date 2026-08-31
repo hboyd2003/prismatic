@@ -20,6 +20,7 @@ package dev.hboyd.prismatic.paper.scheduler;
 
 import io.papermc.paper.threadedregions.scheduler.AsyncScheduler;
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
+import io.papermc.paper.util.Tick;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.checkerframework.common.value.qual.IntRange;
@@ -112,7 +113,7 @@ public final class AsyncPluginScheduler extends AbstractPluginScheduler {
                                         final TimeUnit unit) {
         if (this.closed) throw SCHEDULER_CLOSED_EXCEPTION;
 
-        return Bukkit.getAsyncScheduler().runAtFixedRate(this.plugin, task, 1L, period, unit);
+        return Bukkit.getAsyncScheduler().runAtFixedRate(this.plugin, task, unit.convert(Tick.of(1L)), period, unit);
     }
 
     /**
@@ -139,7 +140,7 @@ public final class AsyncPluginScheduler extends AbstractPluginScheduler {
      */
     public ScheduledTask runAtFixedRate(final Consumer<ScheduledTask> task,
                                         final Duration period) {
-        return this.runAtFixedRate(task, 1L, period.toNanos(), TimeUnit.NANOSECONDS);
+        return this.runAtFixedRate(task, Tick.of(1L).toNanos(), period.toNanos(), TimeUnit.NANOSECONDS);
     }
 
     @Override
