@@ -137,12 +137,16 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
     /**
      * Send the first page as a system chat message to the given audience.
      *
+     * <p>If no items are available then an empty page is sent.</p>
+     *
      * @param audience an audience
      */
     void sendAsMessage(final Audience audience);
 
     /**
      * Send the given page as a system chat message to the given audience.
+     *
+     * <p>If the given page does not exist (i.e., there are no items at that index) then an empty page is sent.</p>
      *
      * @param page     the page
      * @param audience an audience
@@ -152,6 +156,8 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
     /**
      * Render the first page with an empty audience.
      *
+     * <p>If no items are available then an empty page is returned.</p>
+     *
      * @return a component
      */
     @Contract(pure = true)
@@ -159,6 +165,8 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
 
     /**
      * Render the first page for the given audience.
+     *
+     * <p>If no items are available then an empty page is returned.</p>
      *
      * @param audience an audience
      * @return a component
@@ -169,6 +177,8 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
     /**
      * Render the given page.
      *
+     * <p>If the given page does not exist (i.e., there are no items at that index) then an empty page is returned.</p>
+     *
      * @param page the page
      * @return a component
      */
@@ -177,6 +187,8 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
 
     /**
      * Render the given page for the given audience.
+     *
+     * <p>If the given page does not exist (i.e., there are no items at that index) then an empty page is returned.</p>
      *
      * @param page     the page
      * @param audience an audience
