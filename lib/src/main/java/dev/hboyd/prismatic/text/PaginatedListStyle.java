@@ -36,6 +36,7 @@ public interface PaginatedListStyle {
      *
      * @return a style
      */
+    @Contract(pure = true)
     static PaginatedListStyle style() {
         return PaginatedListStyleImpl.DEFAULT;
     }
@@ -80,6 +81,7 @@ public interface PaginatedListStyle {
      *
      * @return the title suffix
      */
+    @Contract(pure = true)
     Component titleSuffix();
 
     /**
@@ -87,6 +89,7 @@ public interface PaginatedListStyle {
      *
      * @return items per page
      */
+    @Contract(pure = true)
     int itemsPerPage();
 
     /**
@@ -94,6 +97,7 @@ public interface PaginatedListStyle {
      *
      * @return the count
      */
+    @Contract(pure = true)
     int pageSelectorCount();
 
     /**
@@ -101,6 +105,7 @@ public interface PaginatedListStyle {
      *
      * @return a style
      */
+    @Contract(pure = true)
     JoinConfiguration pageSelectorStyle();
 
     /**
@@ -108,6 +113,7 @@ public interface PaginatedListStyle {
      *
      * @return a builder
      */
+    @Contract(value = " -> new", pure = true)
     Builder toBuilder();
 
     /**

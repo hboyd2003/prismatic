@@ -43,6 +43,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      * @param itemFactory the factory
      * @return a paginated list component
      */
+    @Contract("_, _, _ -> new")
     static PaginatedListComponent of(final Component title,
                                      final PaginatedListStyle style,
                                      final IPaginatedListComponentItemFactory itemFactory) {
@@ -59,6 +60,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      * @param items the items
      * @return a paginated list component
      */
+    @Contract("_, _, _ -> new")
     static PaginatedListComponent of(final Component title,
                                      final PaginatedListStyle style,
                                      final List<? extends ComponentLike> items) {
@@ -70,6 +72,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      *
      * @return an empty component
      */
+    @Contract(pure = true)
     static PaginatedListComponent empty() {
         return PaginatedListComponentImpl.EMPTY;
     }
@@ -82,6 +85,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      * @param title the title
      * @return a paginated list component
      */
+    @Contract(value = "_ -> new", pure = true)
     PaginatedListComponent title(final Component title);
 
     /**
@@ -89,6 +93,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      *
      * @return the title
      */
+    @Contract(pure = true)
     Component title();
 
     /**
@@ -99,6 +104,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      * @param style the style
      * @return a paginated list component
      */
+    @Contract(value = "_ -> new", pure = true)
     PaginatedListComponent style(final PaginatedListStyle style);
 
     /**
@@ -106,6 +112,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      *
      * @return the style
      */
+    @Contract(pure = true)
     PaginatedListStyle style();
 
     /**
@@ -116,6 +123,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      * @param itemFactory the factory
      * @return a paginated list component
      */
+    @Contract(value = "_ -> new", pure = true)
     PaginatedListComponent itemFactory(IPaginatedListComponentItemFactory itemFactory);
 
     /**
@@ -123,6 +131,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      *
      * @return the factory
      */
+    @Contract(pure = true)
     IPaginatedListComponentItemFactory itemFactory();
 
     /**
@@ -145,6 +154,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      *
      * @return a component
      */
+    @Contract(pure = true)
     Component render();
 
     /**
@@ -153,6 +163,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      * @param audience an audience
      * @return a component
      */
+    @Contract(value = "_ -> new", pure = true)
     Component render(final Audience audience);
 
     /**
@@ -161,6 +172,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      * @param page the page
      * @return a component
      */
+    @Contract(value = "_ -> new", pure = true)
     Component render(final int page);
 
     /**
@@ -170,6 +182,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      * @param audience an audience
      * @return a component
      */
+    @Contract(value = "_, _ -> new", pure = true)
     Component render(final int page, final Audience audience);
 
     /**
@@ -177,6 +190,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      *
      * @return a builder
      */
+    @Contract(value = " -> new", pure = true)
     Builder toBuilder();
 
     /**

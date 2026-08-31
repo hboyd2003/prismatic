@@ -36,6 +36,7 @@ public sealed interface GroupedComponentStyle permits GroupedComponentStyleImpl 
      *
      * @return a style
      */
+    @Contract(pure = true)
     static GroupedComponentStyle style() {
         return GroupedComponentStyleImpl.DEFAULT;
     }
@@ -79,6 +80,7 @@ public sealed interface GroupedComponentStyle permits GroupedComponentStyleImpl 
      *
      * @return the title suffix
      */
+    @Contract(pure = true)
     Component titleSuffix();
 
     /**
@@ -86,6 +88,7 @@ public sealed interface GroupedComponentStyle permits GroupedComponentStyleImpl 
      *
      * @return a builder
      */
+    @Contract(value = " -> new", pure = true)
     Builder toBuilder();
 
     /**

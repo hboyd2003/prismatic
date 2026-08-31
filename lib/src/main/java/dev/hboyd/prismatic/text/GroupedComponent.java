@@ -39,6 +39,7 @@ public sealed interface GroupedComponent extends ComponentLike permits GroupedCo
      * @param style   the style
      * @return a grouped component
      */
+    @Contract("_, _, _ -> new")
     static GroupedComponent of(final ComponentLike title,
                                final ComponentLike content,
                                final GroupedComponentStyle style) {
@@ -54,6 +55,7 @@ public sealed interface GroupedComponent extends ComponentLike permits GroupedCo
      * @param content the content
      * @return a grouped component
      */
+    @Contract("_, _ -> new")
     static GroupedComponent of(final Component title, final Component content) {
         return of(title, content, GroupedComponentStyle.style());
     }
@@ -63,6 +65,7 @@ public sealed interface GroupedComponent extends ComponentLike permits GroupedCo
      *
      * @return an empty component
      */
+    @Contract(pure = true)
     static GroupedComponent empty() {
         return GroupedComponentImpl.EMPTY;
     }
@@ -72,6 +75,7 @@ public sealed interface GroupedComponent extends ComponentLike permits GroupedCo
      *
      * @return the title
      */
+    @Contract(pure = true)
     ComponentLike title();
 
     /**
@@ -79,9 +83,10 @@ public sealed interface GroupedComponent extends ComponentLike permits GroupedCo
      *
      * <p>If the title is the same, this will be returned</p>
      *
-     * @param title the style
+     * @param title the title
      * @return a grouped component
      */
+    @Contract(value = "_ -> new", pure = true)
     GroupedComponent title(final ComponentLike title);
 
     /**
@@ -89,6 +94,7 @@ public sealed interface GroupedComponent extends ComponentLike permits GroupedCo
      *
      * @return the content
      */
+    @Contract(pure = true)
     ComponentLike content();
 
     /**
@@ -99,6 +105,7 @@ public sealed interface GroupedComponent extends ComponentLike permits GroupedCo
      * @param content the content
      * @return a grouped component
      */
+    @Contract(value = "_ -> new", pure = true)
     GroupedComponent content(final ComponentLike content);
 
     /**
@@ -106,6 +113,7 @@ public sealed interface GroupedComponent extends ComponentLike permits GroupedCo
      *
      * @return the style
      */
+    @Contract(pure = true)
     GroupedComponentStyle style();
 
     /**
@@ -116,6 +124,7 @@ public sealed interface GroupedComponent extends ComponentLike permits GroupedCo
      * @param style the style
      * @return a grouped component
      */
+    @Contract(value = "_ -> new", pure = true)
     GroupedComponent style(final GroupedComponentStyle style);
 
     /**
@@ -123,6 +132,7 @@ public sealed interface GroupedComponent extends ComponentLike permits GroupedCo
      *
      * @return a builder
      */
+    @Contract(value = " -> new", pure = true)
     Builder toBuilder();
 
     /**
@@ -130,6 +140,7 @@ public sealed interface GroupedComponent extends ComponentLike permits GroupedCo
      *
      * @return a builder
      */
+    @Contract(value = " -> new", pure = true)
     static Builder builder() {
         return empty().toBuilder();
     }
