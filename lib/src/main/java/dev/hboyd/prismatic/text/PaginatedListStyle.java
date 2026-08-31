@@ -30,7 +30,7 @@ import org.jetbrains.annotations.Contract;
  *
  * @see PaginatedListComponent
  */
-public interface PaginatedListStyle {
+public sealed interface PaginatedListStyle permits PaginatedListStyleImpl {
     /**
      * Get the default style.
      *
