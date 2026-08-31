@@ -71,7 +71,7 @@ public final class NumberConstraints {
             public Constraint<Number> make(final Positive data, final Type type) {
                 return value -> {
                     if (value != null && compare(value, 0L) <= 0)
-                        throw new SerializationException(value + " must be positive");
+                        throw new SerializationException(value + " must be positive (> 0)");
                 };
             }
         }
@@ -91,7 +91,7 @@ public final class NumberConstraints {
             public Constraint<Number> make(final NonPositive data, final Type type) {
                 return value -> {
                     if (value != null && compare(value, 0L) > 0)
-                        throw new SerializationException(value + " must be positive");
+                        throw new SerializationException(value + " must be non-positive");
                 };
             }
         }
@@ -112,7 +112,7 @@ public final class NumberConstraints {
             public Constraint<Number> make(final Negative data, final Type type) {
                 return value -> {
                     if (value != null && compare(value, 0L) >= 0)
-                        throw new SerializationException(value + " must be negative");
+                        throw new SerializationException(value + " must be negative (< 0)");
                 };
             }
         }
@@ -132,7 +132,7 @@ public final class NumberConstraints {
             public Constraint<Number> make(final NonNegative data, final Type type) {
                 return value -> {
                     if (value != null && compare(value, 0L) < 0)
-                        throw new SerializationException(value + " must be positive");
+                        throw new SerializationException(value + " must be non-negative (>= 0)");
                 };
             }
         }
