@@ -68,7 +68,7 @@ public class PluginMessenger implements Closeable, Namespaced {
      * @return whether the channel is reserved or not
      */
     public boolean isReservedChannel(final Key channelKey) {
-        return this.messenger.isReservedChannel(channelKey.asMinimalString());
+        return this.messenger.isReservedChannel(channelKey.asString());
     }
 
     /**
@@ -96,7 +96,7 @@ public class PluginMessenger implements Closeable, Namespaced {
      * @param channelKey a plugin channel key
      */
     public void unregisterOutgoingPluginChannel(final Key channelKey) {
-        this.messenger.unregisterOutgoingPluginChannel(this.plugin, channelKey.asMinimalString());
+        this.messenger.unregisterOutgoingPluginChannel(this.plugin, channelKey.asString());
     }
 
     /**
@@ -107,7 +107,7 @@ public class PluginMessenger implements Closeable, Namespaced {
      */
     public void unregisterIncomingPluginChannel(final Key channelKey,
                                                 final PluginMessageListener listener) {
-        this.messenger.unregisterIncomingPluginChannel(this.plugin, channelKey.asMinimalString(), listener);
+        this.messenger.unregisterIncomingPluginChannel(this.plugin, channelKey.asString(), listener);
     }
 
     /**
@@ -126,7 +126,7 @@ public class PluginMessenger implements Closeable, Namespaced {
      * @return whether the channel is registered or not
      */
     public boolean isIncomingChannelRegistered(final Key channelKey) {
-        return this.messenger.isIncomingChannelRegistered(this.plugin, channelKey.asMinimalString());
+        return this.messenger.isIncomingChannelRegistered(this.plugin, channelKey.asString());
     }
 
     /**
@@ -140,7 +140,7 @@ public class PluginMessenger implements Closeable, Namespaced {
     public void dispatchIncomingMessage(final PlayerConnection source,
                                         final Key channelKey,
                                         final byte[] message) {
-        this.messenger.dispatchIncomingMessage(source, channelKey.asMinimalString(), message);
+        this.messenger.dispatchIncomingMessage(source, channelKey.asString(), message);
     }
 
     /**
@@ -167,7 +167,7 @@ public class PluginMessenger implements Closeable, Namespaced {
      * @param channelKey a plugin channel key
      */
     public void unregisterIncomingPluginChannel(final Key channelKey) {
-        this.messenger.unregisterIncomingPluginChannel(this.plugin, channelKey.asMinimalString());
+        this.messenger.unregisterIncomingPluginChannel(this.plugin, channelKey.asString());
     }
 
     /**
@@ -177,7 +177,7 @@ public class PluginMessenger implements Closeable, Namespaced {
      * @return incoming channel registrations
      */
     public @Unmodifiable Set<PluginMessageListenerRegistration> incomingChannelRegistrations(final Key channelKey) {
-        return this.messenger.getIncomingChannelRegistrations(this.plugin, channelKey.asMinimalString());
+        return this.messenger.getIncomingChannelRegistrations(this.plugin, channelKey.asString());
     }
 
     /**
@@ -187,7 +187,7 @@ public class PluginMessenger implements Closeable, Namespaced {
      * @return whether the channel is registered
      */
     public boolean isOutgoingChannelRegistered(final Key channelKey) {
-        return this.messenger.isOutgoingChannelRegistered(this.plugin, channelKey.asMinimalString());
+        return this.messenger.isOutgoingChannelRegistered(this.plugin, channelKey.asString());
     }
 
     /**
@@ -201,7 +201,7 @@ public class PluginMessenger implements Closeable, Namespaced {
      */
     public PluginMessageListenerRegistration registerIncomingPluginChannel(final Key channelKey,
                                                                            final PluginMessageListener listener) {
-        return this.messenger.registerIncomingPluginChannel(this.plugin, channelKey.asMinimalString(), listener);
+        return this.messenger.registerIncomingPluginChannel(this.plugin, channelKey.asString(), listener);
     }
 
     /**
@@ -210,7 +210,7 @@ public class PluginMessenger implements Closeable, Namespaced {
      * @param channelKey a plugin channel key
      */
     public void registerOutgoingPluginChannel(final Key channelKey) {
-        this.messenger.registerOutgoingPluginChannel(this.plugin, channelKey.asMinimalString());
+        this.messenger.registerOutgoingPluginChannel(this.plugin, channelKey.asString());
     }
 
     /**
