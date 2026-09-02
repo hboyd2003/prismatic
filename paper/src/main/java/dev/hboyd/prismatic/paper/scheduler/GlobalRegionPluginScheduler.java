@@ -32,7 +32,12 @@ import java.util.function.Consumer;
  * A wrapper for an {@link GlobalRegionScheduler} that holds and provides the {@link Plugin} instance for it.
  */
 public final class GlobalRegionPluginScheduler extends AbstractPluginScheduler {
-    GlobalRegionPluginScheduler(final Plugin plugin) {
+    /**
+     * Create a global region plugin scheduler for the given plugin.
+     *
+     * @param plugin a plugin
+     */
+    public GlobalRegionPluginScheduler(final Plugin plugin) {
         super(plugin);
     }
 

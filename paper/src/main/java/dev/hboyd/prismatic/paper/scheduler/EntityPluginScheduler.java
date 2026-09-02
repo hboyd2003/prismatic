@@ -37,7 +37,12 @@ import java.util.function.Consumer;
 public final class EntityPluginScheduler extends AbstractPluginScheduler {
     private final List<ScheduledTask> tasks = new ArrayList<>();
 
-    EntityPluginScheduler(final Plugin plugin) {
+    /**
+     * Create am entity plugin scheduler for the given plugin.
+     *
+     * @param plugin a plugin
+     */
+    public EntityPluginScheduler(final Plugin plugin) {
         super(plugin);
     }
 

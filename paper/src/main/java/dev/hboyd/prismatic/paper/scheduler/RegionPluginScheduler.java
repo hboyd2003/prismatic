@@ -38,7 +38,12 @@ import java.util.function.Consumer;
 public final class RegionPluginScheduler extends AbstractPluginScheduler {
     private final List<ScheduledTask> tasks = new ArrayList<>();
 
-    RegionPluginScheduler(final Plugin plugin) {
+    /**
+     * Create a region plugin scheduler for the given plugin.
+     *
+     * @param plugin a plugin
+     */
+    public RegionPluginScheduler(final Plugin plugin) {
         super(plugin);
     }
 
@@ -72,6 +77,8 @@ public final class RegionPluginScheduler extends AbstractPluginScheduler {
      * @return the {@link ScheduledTask} that represents the scheduled task
      */
     public ScheduledTask run(final Location location, final Consumer<ScheduledTask> task) {
+        if (this.closed) throw SCHEDULER_CLOSED_EXCEPTION;
+
         return this.runDelayed(location.getWorld(),
                 location.getBlockX() >> 4,
                 location.getBlockZ() >> 4,
