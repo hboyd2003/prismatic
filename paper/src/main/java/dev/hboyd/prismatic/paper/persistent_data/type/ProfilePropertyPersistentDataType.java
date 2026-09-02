@@ -36,8 +36,8 @@ public final class ProfilePropertyPersistentDataType implements PersistentDataTy
     public static final ProfilePropertyPersistentDataType INSTANCE = new ProfilePropertyPersistentDataType();
 
     private static final NamespacedKey PROFILE_PROPERTY_NAME = new NamespacedKey(Adventure.NAMESPACE, ComponentTreeConstants.PROFILE_PROPERTY_NAME);
-    private static final NamespacedKey PROFILE_PROPERTY_VALUE = new NamespacedKey(Adventure.NAMESPACE, ComponentTreeConstants.PROFILE_PROPERTY_NAME);
-    private static final NamespacedKey PROFILE_PROPERTY_SIGNATURE = new NamespacedKey(Adventure.NAMESPACE, ComponentTreeConstants.PROFILE_PROPERTY_NAME);
+    private static final NamespacedKey PROFILE_PROPERTY_VALUE = new NamespacedKey(Adventure.NAMESPACE, ComponentTreeConstants.PROFILE_PROPERTY_VALUE);
+    private static final NamespacedKey PROFILE_PROPERTY_SIGNATURE = new NamespacedKey(Adventure.NAMESPACE, ComponentTreeConstants.PROFILE_PROPERTY_SIGNATURE);
 
     private ProfilePropertyPersistentDataType() {}
 
