@@ -20,7 +20,7 @@ package dev.hboyd.prismatic.text;
 
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.ComponentLike;
-import org.checkerframework.checker.index.qual.Positive;
+import org.checkerframework.checker.index.qual.NonNegative;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 
@@ -122,7 +122,7 @@ public interface IPaginatedListComponentItemFactory {
      * @return whether an item is available
      */
     @ApiStatus.OverrideOnly
-    boolean isAvailable(@Positive int index, Audience audience);
+    boolean isAvailable(@NonNegative int index, Audience audience);
 
     /**
      * Get the item at the given index.
@@ -133,5 +133,5 @@ public interface IPaginatedListComponentItemFactory {
      * @throws IndexOutOfBoundsException when no item exists
      */
     @ApiStatus.OverrideOnly
-    ComponentLike get(int index, Audience audience) throws IndexOutOfBoundsException;
+    ComponentLike get(@NonNegative int index, Audience audience) throws IndexOutOfBoundsException;
 }

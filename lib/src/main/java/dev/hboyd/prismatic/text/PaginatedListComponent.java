@@ -146,6 +146,8 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
     /**
      * Send the given page as a system chat message to the given audience.
      *
+     * <p>Pages are indexed from one.</p>
+     *
      * <p>If the given page does not exist (i.e., there are no items at that index) then an empty page is sent.</p>
      *
      * @param page     the page
@@ -177,6 +179,8 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
     /**
      * Render the given page.
      *
+     * <p>Pages are indexed from one.</p>
+     *
      * <p>If the given page does not exist (i.e., there are no items at that index) then an empty page is returned.</p>
      *
      * @param page the page
@@ -187,6 +191,8 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
 
     /**
      * Render the given page for the given audience.
+     *
+     * <p>Pages are indexed from one.</p>
      *
      * <p>If the given page does not exist (i.e., there are no items at that index) then an empty page is returned.</p>
      *

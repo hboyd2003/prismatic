@@ -113,7 +113,7 @@ public final class PaginatedListComponentImpl implements PaginatedListComponent 
 
     @Override
     public Component render(final Audience audience) {
-        return this.render(0, audience);
+        return this.render(1, audience);
     }
 
     @Override
@@ -128,7 +128,7 @@ public final class PaginatedListComponentImpl implements PaginatedListComponent 
 
     @Override
     public Component render(final int page, final Audience audience) {
-        if (page < 0) throw new IllegalArgumentException("Page number must be greater than zero");
+        if (page <= 0) throw new IllegalArgumentException("Page number must be greater than zero");
 
         final ComponentBuilder<TextComponent, TextComponent.Builder> builder = Component.text();
 
@@ -139,7 +139,7 @@ public final class PaginatedListComponentImpl implements PaginatedListComponent 
                 this.style.widthProvider(),
                 UIContainer.CHAT.width(),
                 Locale.getDefault())); // TODO: derive locale from audience
-        final int firstItem = this.style.itemsPerPage() * page;
+        final int firstItem = this.style.itemsPerPage() * (page - 1);
 
         int lastItem = firstItem + this.style.itemsPerPage() - 1;
         while (lastItem >= firstItem && !this.itemFactory.isAvailable(lastItem, audience))
@@ -186,16 +186,16 @@ public final class PaginatedListComponentImpl implements PaginatedListComponent 
 
     private Component buildPageSelector(final int page, final Audience audience) {
         int lastPage = page;
-        for (int i = page + this.style.pageSelectorCount(); i > page; i--) {
-            if (this.itemFactory.isAvailable(this.style.itemsPerPage() * i, audience)) {
+        for (int i = page + this.style.pageSelectorCount() - 1; i > page; i--) {
+            if (this.itemFactory.isAvailable(this.style.itemsPerPage() * (i - 1), audience)) {
                 lastPage = i;
                 break;
             }
         }
 
         final int minPage = Math.max(Math.min(page - (this.style.pageSelectorCount() / 2),
-                lastPage - this.style.pageSelectorCount()), 0);
-        final int maxPage = Math.min(lastPage, minPage + this.style.pageSelectorCount());
+                lastPage - this.style.pageSelectorCount() + 1), 1);
+        final int maxPage = Math.min(lastPage, minPage + this.style.pageSelectorCount() - 1);
 
         final List<Component> pageSelectors = new ArrayList<>();
         for (int i = minPage; i <= maxPage; i++) {
