@@ -23,6 +23,7 @@ import net.kyori.adventure.key.Namespaced;
 import org.bukkit.plugin.Plugin;
 
 import java.io.Closeable;
+import java.util.Objects;
 
 /**
  * A scheduler tied to a specific plugin.
@@ -36,7 +37,7 @@ public abstract class AbstractPluginScheduler implements Closeable, Namespaced {
     protected boolean closed;
 
     protected AbstractPluginScheduler(final Plugin plugin) {
-        this.plugin = plugin;
+        this.plugin = Objects.requireNonNull(plugin);
         this.closed = false;
     }
 
