@@ -256,6 +256,6 @@ public class NBTPersistentDataContainer implements PersistentDataContainer {
 
     @Override
     public int getSize() {
-        return BINARY_TAG_TYPE_MAP.size();
+        return this.compoundBinaryTag.size();
     }
 }
