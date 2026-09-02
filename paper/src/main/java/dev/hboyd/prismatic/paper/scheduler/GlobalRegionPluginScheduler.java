@@ -68,7 +68,7 @@ public final class GlobalRegionPluginScheduler extends AbstractPluginScheduler {
      * @return the {@link ScheduledTask} that represents the scheduled task
      */
     public ScheduledTask runDelayed(final Consumer<ScheduledTask> task, @IntRange(from = 1) final long delayTicks) {
-        if (this.closed) throw SCHEDULER_CLOSED_EXCEPTION;
+        this.checkClosed();
 
         return Bukkit.getGlobalRegionScheduler().runDelayed(this.plugin, task, delayTicks);
     }
@@ -96,7 +96,7 @@ public final class GlobalRegionPluginScheduler extends AbstractPluginScheduler {
     public ScheduledTask runAtFixedRate(final Consumer<ScheduledTask> task,
                                         @IntRange(from = 1) final long initialDelayTicks,
                                         @IntRange(from = 1) final long periodTicks) {
-        if (this.closed) throw SCHEDULER_CLOSED_EXCEPTION;
+        this.checkClosed();
 
         return Bukkit.getGlobalRegionScheduler().runAtFixedRate(this.plugin, task, initialDelayTicks, periodTicks);
     }

@@ -49,7 +49,7 @@ public final class AsyncPluginScheduler extends AbstractPluginScheduler {
      * @return The {@link ScheduledTask} that represents the scheduled task
      */
     public ScheduledTask runNow(final Consumer<ScheduledTask> task) {
-        if (this.closed) throw SCHEDULER_CLOSED_EXCEPTION;
+        this.checkClosed();
 
         return Bukkit.getAsyncScheduler().runNow(this.plugin, task);
     }
@@ -65,7 +65,7 @@ public final class AsyncPluginScheduler extends AbstractPluginScheduler {
     public ScheduledTask runDelayed(final Consumer<ScheduledTask> task,
                                     @IntRange(from = 1) final long delay,
                                     final TimeUnit unit) {
-        if (this.closed) throw SCHEDULER_CLOSED_EXCEPTION;
+        this.checkClosed();
 
         return Bukkit.getAsyncScheduler().runDelayed(this.plugin, task, delay, unit);
     }
@@ -95,7 +95,7 @@ public final class AsyncPluginScheduler extends AbstractPluginScheduler {
                                         @IntRange(from = 1) final long initialDelay,
                                         @IntRange(from = 1) final long period,
                                         final TimeUnit unit) {
-        if (this.closed) throw SCHEDULER_CLOSED_EXCEPTION;
+        this.checkClosed();
 
         return Bukkit.getAsyncScheduler().runAtFixedRate(this.plugin, task, initialDelay, period, unit);
     }
@@ -111,7 +111,7 @@ public final class AsyncPluginScheduler extends AbstractPluginScheduler {
     public ScheduledTask runAtFixedRate(final Consumer<ScheduledTask> task,
                                         @IntRange(from = 1) final long period,
                                         final TimeUnit unit) {
-        if (this.closed) throw SCHEDULER_CLOSED_EXCEPTION;
+        this.checkClosed();
 
         return Bukkit.getAsyncScheduler().runAtFixedRate(this.plugin, task, unit.convert(Tick.of(1L)), period, unit);
     }

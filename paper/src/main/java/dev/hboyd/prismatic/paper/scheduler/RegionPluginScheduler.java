@@ -77,7 +77,7 @@ public final class RegionPluginScheduler extends AbstractPluginScheduler {
      * @return the {@link ScheduledTask} that represents the scheduled task
      */
     public ScheduledTask run(final Location location, final Consumer<ScheduledTask> task) {
-        if (this.closed) throw SCHEDULER_CLOSED_EXCEPTION;
+        this.checkClosed();
 
         return this.runDelayed(location.getWorld(),
                 location.getBlockX() >> 4,
@@ -117,7 +117,7 @@ public final class RegionPluginScheduler extends AbstractPluginScheduler {
                                     final int chunkZ,
                                     final Consumer<ScheduledTask> task,
                                     @IntRange(from = 1) final long delayTicks) {
-        if (this.closed) throw SCHEDULER_CLOSED_EXCEPTION;
+        this.checkClosed();
 
         final ScheduledTask scheduledTask = Bukkit.getRegionScheduler()
                 .runDelayed(this.plugin, world, chunkX, chunkZ, task, delayTicks);
@@ -180,7 +180,7 @@ public final class RegionPluginScheduler extends AbstractPluginScheduler {
                                         final Consumer<ScheduledTask> task,
                                         @IntRange(from = 1) final long initialDelayTicks,
                                         @IntRange(from = 1) final long periodTicks) {
-        if (this.closed) throw SCHEDULER_CLOSED_EXCEPTION;
+        this.checkClosed();
 
         final ScheduledTask scheduledTask = Bukkit.getRegionScheduler()
                 .runAtFixedRate(this.plugin, world, chunkX, chunkZ, task, initialDelayTicks, periodTicks);

@@ -29,9 +29,8 @@ import java.util.Objects;
  * A scheduler tied to a specific plugin.
  */
 public abstract class AbstractPluginScheduler implements Closeable, Namespaced {
-    protected static final IllegalStateException SCHEDULER_CLOSED_EXCEPTION =
-            new IllegalStateException("Scheduler is closed");
     protected final Plugin plugin;
+
     protected boolean closed;
 
     protected AbstractPluginScheduler(final Plugin plugin) {
@@ -66,6 +65,10 @@ public abstract class AbstractPluginScheduler implements Closeable, Namespaced {
      */
     public final boolean closed() {
         return this.closed;
+    }
+
+    protected final void checkClosed() {
+        if (this.closed) throw new IllegalStateException("Scheduler is closed");
     }
 
     /**

@@ -71,7 +71,7 @@ public final class EntityPluginScheduler extends AbstractPluginScheduler {
                            final Runnable run,
                            @Nullable final Runnable retired,
                            @IntRange(from = 1) final long delay) {
-        if (this.closed) throw SCHEDULER_CLOSED_EXCEPTION;
+        this.checkClosed();
 
         return entity.getScheduler().execute(this.plugin, run, retired, delay);
     }
@@ -125,7 +125,7 @@ public final class EntityPluginScheduler extends AbstractPluginScheduler {
                                               final Consumer<ScheduledTask> task,
                                               @Nullable final Runnable retired,
                                               @IntRange(from = 1) final long delayTicks) throws IllegalStateException {
-        if (this.closed) throw SCHEDULER_CLOSED_EXCEPTION;
+        this.checkClosed();
 
         final ScheduledTask scheduledTask = entity.getScheduler().runDelayed(this.plugin, task, retired, delayTicks);
         if (scheduledTask != null) this.tasks.add(scheduledTask);
@@ -187,7 +187,7 @@ public final class EntityPluginScheduler extends AbstractPluginScheduler {
                                                   @Nullable final Runnable retired,
                                                   @IntRange(from = 1) final long initialDelayTicks,
                                                   @IntRange(from = 1) final long periodTicks) {
-        if (this.closed) throw SCHEDULER_CLOSED_EXCEPTION;
+        this.checkClosed();
 
         final ScheduledTask scheduledTask = entity.getScheduler()
                 .runAtFixedRate(this.plugin, task, retired, initialDelayTicks, periodTicks);
