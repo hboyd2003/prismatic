@@ -130,7 +130,7 @@ public class NBTPersistentDataContainer implements PersistentDataContainer {
 
     @Override
     public void remove(final NamespacedKey key) {
-        if (key == null) throw new IllegalStateException("The NamespacedKey key cannot be null");
+        Objects.requireNonNull(key, "key");
 
         this.compoundBinaryTag = this.compoundBinaryTag.remove(key.asString());
     }
@@ -145,14 +145,14 @@ public class NBTPersistentDataContainer implements PersistentDataContainer {
 
     @Override
     public <P, C> boolean has(final NamespacedKey key, final PersistentDataType<P, C> type) {
-        if (key == null) throw new IllegalStateException("The NamespacedKey key cannot be null");
+        Objects.requireNonNull(key, "key");
 
         return this.compoundBinaryTag.contains(key.asString(), BINARY_TAG_TYPE_MAP.get(type.getPrimitiveType()));
     }
 
     @Override
     public boolean has(final NamespacedKey key) {
-        Objects.requireNonNull(key, "NamespacedKey must not be null");
+        Objects.requireNonNull(key, "key");
 
         return this.compoundBinaryTag.contains(key.asString());
     }
