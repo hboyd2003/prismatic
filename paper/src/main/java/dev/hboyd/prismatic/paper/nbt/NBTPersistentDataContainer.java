@@ -160,6 +160,8 @@ public class NBTPersistentDataContainer implements PersistentDataContainer {
     @SuppressWarnings("unchecked")
     @Override
     public @Nullable <P, C> C get(final NamespacedKey key, final PersistentDataType<P, C> type) {
+        if (!this.compoundBinaryTag.contains(key.asString())) return null;
+
         final P primitive;
         if (type.getPrimitiveType() == Byte.class)
             primitive = (P) Byte.valueOf(this.compoundBinaryTag.getByte(key.asString()));
