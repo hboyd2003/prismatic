@@ -1,5 +1,5 @@
 /*
- * Simple Freeze
+ * prismatic
  * Copyright (c) 2026 Harrison Boyd
  *
  * This program is free software: you can redistribute it and/or modify
