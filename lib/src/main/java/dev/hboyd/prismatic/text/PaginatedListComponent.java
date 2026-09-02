@@ -135,17 +135,6 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
     IPaginatedListComponentItemFactory itemFactory();
 
     /**
-     * Send the first page as a system chat message to the given audience.
-     *
-     * <p>If no items are available then an empty page is sent.</p>
-     *
-     * @param audience an audience
-     */
-    default void sendAsMessage(final Audience audience) {
-        this.sendAsMessage(0, audience);
-    }
-
-    /**
      * Send the given page as a system chat message to the given audience.
      *
      * <p>Pages are indexed from one.</p>
@@ -158,16 +147,29 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
     void sendAsMessage(final int page, final Audience audience);
 
     /**
-     * Render the first page with an empty audience.
+     * Send the first page as a system chat message to the given audience.
      *
-     * <p>If no items are available then an empty page is returned.</p>
+     * <p>If no items are available then an empty page is sent.</p>
      *
+     * @param audience an audience
+     */
+    default void sendAsMessage(final Audience audience) {
+        this.sendAsMessage(0, audience);
+    }
+
+    /**
+     * Render the given page for the given audience.
+     *
+     * <p>Pages are indexed from one.</p>
+     *
+     * <p>If the given page does not exist (i.e., there are no items at that index) then an empty page is returned.</p>
+     *
+     * @param page     the page
+     * @param audience an audience
      * @return a component
      */
-    @Contract(pure = true)
-    default Component render() {
-        return this.render(Audience.empty());
-    }
+    @Contract(value = "_, _ -> new", pure = true)
+    Component render(final int page, final Audience audience);
 
     /**
      * Render the first page for the given audience.
@@ -198,18 +200,16 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
     }
 
     /**
-     * Render the given page for the given audience.
+     * Render the first page with an empty audience.
      *
-     * <p>Pages are indexed from one.</p>
+     * <p>If no items are available then an empty page is returned.</p>
      *
-     * <p>If the given page does not exist (i.e., there are no items at that index) then an empty page is returned.</p>
-     *
-     * @param page     the page
-     * @param audience an audience
      * @return a component
      */
-    @Contract(value = "_, _ -> new", pure = true)
-    Component render(final int page, final Audience audience);
+    @Contract(pure = true)
+    default Component render() {
+        return this.render(Audience.empty());
+    }
 
     @Override
     default Component asComponent() {
