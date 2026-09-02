@@ -215,7 +215,7 @@ public class NBTPersistentDataContainer implements PersistentDataContainer {
     @Override
     public void copyTo(final PersistentDataContainer other, final boolean replace) {
         for (final NamespacedKey key : this.getKeys()) {
-            if (replace && other.has(key)) continue;
+            if (!replace && other.has(key)) continue;
 
             final BinaryTag tag = this.compoundBinaryTag.get(key.asString());
 
