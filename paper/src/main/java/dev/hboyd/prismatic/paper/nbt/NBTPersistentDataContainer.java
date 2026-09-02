@@ -54,7 +54,7 @@ import java.util.stream.Collectors;
  * @see PersistentDataContainer
  */
 public class NBTPersistentDataContainer implements PersistentDataContainer {
-    private static final Map<Object, BinaryTagType<?>> binaryTagTypeMap = Map.of(
+    private static final Map<Object, BinaryTagType<?>> BINARY_TAG_TYPE_MAP = Map.of(
             Byte.class, BinaryTagTypes.BYTE,
             Short.class, BinaryTagTypes.SHORT,
             Integer.class, BinaryTagTypes.INT,
@@ -145,7 +145,7 @@ public class NBTPersistentDataContainer implements PersistentDataContainer {
     public <P, C> boolean has(final NamespacedKey key, final PersistentDataType<P, C> type) {
         if (key == null) throw new IllegalStateException("The NamespacedKey key cannot be null");
 
-        return this.compoundBinaryTag.contains(key.asString(), binaryTagTypeMap.get(type.getPrimitiveType()));
+        return this.compoundBinaryTag.contains(key.asString(), BINARY_TAG_TYPE_MAP.get(type.getPrimitiveType()));
     }
 
     @Override
@@ -256,6 +256,6 @@ public class NBTPersistentDataContainer implements PersistentDataContainer {
 
     @Override
     public int getSize() {
-        return binaryTagTypeMap.size();
+        return BINARY_TAG_TYPE_MAP.size();
     }
 }
