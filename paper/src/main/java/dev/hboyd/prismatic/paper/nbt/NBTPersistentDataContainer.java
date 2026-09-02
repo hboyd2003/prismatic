@@ -119,7 +119,9 @@ public class NBTPersistentDataContainer implements PersistentDataContainer {
             this.compoundBinaryTag = this.compoundBinaryTag.putLongArray(key.asString(), (long[]) primitive);
         else if (type.getPrimitiveType() == PersistentDataContainer.class) {
             try {
-                this.compoundBinaryTag = BinaryTagIO.reader().read(new ByteArrayInputStream(((PersistentDataContainer) primitive).serializeToBytes()));
+                final CompoundBinaryTag valueTag = BinaryTagIO.reader()
+                        .read(new ByteArrayInputStream(((PersistentDataContainer) primitive).serializeToBytes()));
+                this.compoundBinaryTag = this.compoundBinaryTag.put(key.asString(), valueTag);
             } catch (final IOException e) {
                 throw new RuntimeException(e);
             }
