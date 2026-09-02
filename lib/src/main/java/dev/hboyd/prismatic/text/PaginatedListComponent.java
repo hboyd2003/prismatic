@@ -141,7 +141,9 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      *
      * @param audience an audience
      */
-    void sendAsMessage(final Audience audience);
+    default void sendAsMessage(final Audience audience) {
+        this.sendAsMessage(0, audience);
+    }
 
     /**
      * Send the given page as a system chat message to the given audience.
@@ -163,7 +165,9 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      * @return a component
      */
     @Contract(pure = true)
-    Component render();
+    default Component render() {
+        return this.render(Audience.empty());
+    }
 
     /**
      * Render the first page for the given audience.
@@ -174,7 +178,9 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      * @return a component
      */
     @Contract(value = "_ -> new", pure = true)
-    Component render(final Audience audience);
+    default Component render(final Audience audience) {
+        return this.render(1, audience);
+    }
 
     /**
      * Render the given page.
@@ -187,7 +193,9 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      * @return a component
      */
     @Contract(value = "_ -> new", pure = true)
-    Component render(final int page);
+    default Component render(final int page) {
+        return this.render(page, Audience.empty());
+    }
 
     /**
      * Render the given page for the given audience.
@@ -202,6 +210,11 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      */
     @Contract(value = "_, _ -> new", pure = true)
     Component render(final int page, final Audience audience);
+
+    @Override
+    default Component asComponent() {
+        return this.render();
+    }
 
     /**
      * Create a builder from this component.
