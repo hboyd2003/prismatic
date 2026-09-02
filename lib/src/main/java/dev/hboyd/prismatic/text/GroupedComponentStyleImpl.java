@@ -30,7 +30,7 @@ import java.util.Map;
 import java.util.Objects;
 
 final class GroupedComponentStyleImpl implements GroupedComponentStyle {
-    static GroupedComponentStyleImpl DEFAULT = new GroupedComponentStyleImpl(TextWidthProvider.DEFAULT,
+    static final GroupedComponentStyleImpl DEFAULT = new GroupedComponentStyleImpl(TextWidthProvider.DEFAULT,
             new StyledGlyph(
                     MinecraftFont.BUILTIN.getSpaceCodepoints().entrySet().stream()
                             .filter(entry -> entry.getValue() > 0)
