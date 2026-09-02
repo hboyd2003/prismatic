@@ -32,31 +32,23 @@ plugins {
 dependencies {
     implementation(libs.bundles.adventureAPI)
 
-    compileOnly(libs.brigadier)
     compileOnly(libs.gson)
-    compileOnly(libs.configurateCore)
-    compileOnly(libs.configurateNBT)
     compileOnly(libs.configurateHocon)
-    compileOnly(libs.guava)
-    compileOnly(libs.chasm)
 
-    compileOnly(libs.jspecify)
-    compileOnly(libs.jetbrainsAnnotations)
-    compileOnly(libs.checkerFramework)
+    api(libs.brigadier)
+    api(libs.configurateCore)
+    api(libs.configurateNBT)
+    api(libs.guava)
+    api(libs.chasm)
+    api(libs.jspecify)
+    api(libs.jetbrainsAnnotations)
+    api(libs.checkerFramework)
 
     testImplementation(libs.junitJupiterApi)
-    testImplementation(libs.brigadier)
     testImplementation(libs.gson)
-    testImplementation(libs.configurateCore)
-    testImplementation(libs.configurateNBT)
     testImplementation(libs.configurateHocon)
-    testImplementation(libs.guava)
-    testImplementation(libs.chasm)
-
-    testImplementation(libs.jspecify)
-    testImplementation(libs.jetbrainsAnnotations)
-    testImplementation(libs.checkerFramework)
     testImplementation(libs.bundles.junitJupiterCompile)
+
     testRuntimeOnly(libs.bundles.junitJupiterRuntime)
 }
 
