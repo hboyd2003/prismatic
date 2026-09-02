@@ -30,8 +30,7 @@ import java.util.Objects;
  */
 public abstract class AbstractPluginScheduler implements Closeable, Namespaced {
     protected final Plugin plugin;
-
-    protected boolean closed;
+    private boolean closed;
 
     protected AbstractPluginScheduler(final Plugin plugin) {
         this.plugin = Objects.requireNonNull(plugin);
