@@ -103,6 +103,9 @@ public final class AsyncPluginScheduler extends AbstractPluginScheduler {
     /**
      * Schedule the specified task to be executed asynchronously, with the specified period.
      *
+     * <p>Due to limitations with the Bukkit AsyncScheduler, the task will be delayed by the minimum positive value of
+     * the unit</p>
+     *
      * @param task   specified task
      * @param period the time between task executions after the first execution of the task
      * @param unit   the time unit for the period
@@ -111,9 +114,7 @@ public final class AsyncPluginScheduler extends AbstractPluginScheduler {
     public ScheduledTask runAtFixedRate(final Consumer<ScheduledTask> task,
                                         @IntRange(from = 1) final long period,
                                         final TimeUnit unit) {
-        this.checkClosed();
-
-        return Bukkit.getAsyncScheduler().runAtFixedRate(this.plugin, task, unit.convert(Tick.of(1L)), period, unit);
+        return this.runAtFixedRate(task, Duration.of(period, unit.toChronoUnit()));
     }
 
     /**
