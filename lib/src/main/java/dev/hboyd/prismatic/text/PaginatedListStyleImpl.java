@@ -27,6 +27,7 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.Style;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.checkerframework.checker.index.qual.Positive;
+import org.checkerframework.common.value.qual.IntRange;
 
 import java.util.Map;
 import java.util.Objects;
@@ -165,13 +166,15 @@ final class PaginatedListStyleImpl implements PaginatedListStyle {
         }
 
         @Override
-        public Builder itemsPerPage(final int itemsPerPage) {
+        public Builder itemsPerPage(@Positive final int itemsPerPage) {
+            if (itemsPerPage < 1) throw new IllegalArgumentException("itemsPerPage must be greater than zero");
             this.itemsPerPage = itemsPerPage;
             return this;
         }
 
         @Override
-        public Builder pageSelectorCount(final int pageSelectorCount) {
+        public Builder pageSelectorCount(@IntRange(from = 2) final int pageSelectorCount) {
+            if (pageSelectorCount < 2) throw new IllegalArgumentException("pageSelectorCount must be greater than one");
             this.pageSelectorCount = pageSelectorCount;
             return this;
         }

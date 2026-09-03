@@ -23,6 +23,8 @@ import dev.hboyd.chasm.text.TextWidthProvider;
 import net.kyori.adventure.builder.AbstractBuilder;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.JoinConfiguration;
+import org.checkerframework.checker.index.qual.Positive;
+import org.checkerframework.common.value.qual.IntRange;
 import org.jetbrains.annotations.Contract;
 
 /**
@@ -163,7 +165,7 @@ public sealed interface PaginatedListStyle permits PaginatedListStyleImpl {
          * @return this builder
          */
         @Contract(value = "_ -> this", mutates = "this")
-        Builder itemsPerPage(int itemsPerPage);
+        Builder itemsPerPage(@Positive int itemsPerPage);
 
         /**
          * Set the maximum number of page selectors to show at once.
@@ -172,7 +174,7 @@ public sealed interface PaginatedListStyle permits PaginatedListStyleImpl {
          * @return this builder
          */
         @Contract(value = "_ -> this", mutates = "this")
-        Builder pageSelectorCount(int pageSelectorCount);
+        Builder pageSelectorCount(@IntRange(from = 2) int pageSelectorCount);
 
         /**
          * Set the style of the page selector.
