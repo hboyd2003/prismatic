@@ -9,7 +9,6 @@ module dev.hboyd.prismatic.lib {
     requires transitive org.jetbrains.annotations;
     requires transitive org.jspecify;
     requires transitive org.spongepowered.configurate;
-    requires transitive org.spongepowered.configurate.hocon;
 
     requires com.google.common;
     requires com.google.gson;
@@ -17,6 +16,7 @@ module dev.hboyd.prismatic.lib {
     requires net.kyori.adventure.text.minimessage;
     requires net.kyori.adventure.text.serializer.legacy;
     requires net.kyori.adventure.text.serializer.plain;
+    requires org.spongepowered.configurate.hocon;
 
     exports dev.hboyd.prismatic;
     exports dev.hboyd.prismatic.brigadier;
