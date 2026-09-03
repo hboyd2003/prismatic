@@ -31,7 +31,7 @@ import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 
 /**
- * A factory items in a paginated list component.
+ * A factory for items in a paginated list component.
  *
  * @see PaginatedListComponent
  */
@@ -101,7 +101,7 @@ public interface IPaginatedListComponentItemFactory {
     }
 
     /**
-     * Create a paginated list component item factory which will has no items and will throw an index out of bounds
+     * Create a paginated list component item factory which has no items and will throw an index out of bounds
      * exception if used.
      *
      * @return the factory
