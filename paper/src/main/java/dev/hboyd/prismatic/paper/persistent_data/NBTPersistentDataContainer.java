@@ -243,6 +243,8 @@ public class NBTPersistentDataContainer implements PersistentDataContainer {
                 other.set(key, PersistentDataType.INTEGER_ARRAY, ((IntArrayBinaryTag) tag).value());
             else if (tag.type() == BinaryTagTypes.LONG_ARRAY)
                 other.set(key, PersistentDataType.LONG_ARRAY, ((LongArrayBinaryTag) tag).value());
+            else if (tag.type() == BinaryTagTypes.COMPOUND)
+                other.set(key, PersistentDataType.TAG_CONTAINER, new NBTPersistentDataContainer((CompoundBinaryTag) tag));
         }
     }
 
