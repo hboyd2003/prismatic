@@ -33,11 +33,14 @@ public class NamespacedKeySerializer implements TypeSerializer<NamespacedKey> {
     public static final NamespacedKeySerializer INSTANCE = new NamespacedKeySerializer();
 
     @Override
-    public NamespacedKey deserialize(final Type type, final ConfigurationNode node) {
+    public NamespacedKey deserialize(final Type type, final ConfigurationNode node) throws SerializationException {
         final String namespacedKeyString = node.getString();
-        if (namespacedKeyString == null || namespacedKeyString.isEmpty()) return null;
+        if (namespacedKeyString == null || namespacedKeyString.isEmpty())
+            throw new SerializationException(type, "Key cannot be empty");
 
-        return NamespacedKey.fromString(namespacedKeyString);
+        final NamespacedKey namespacedKey = NamespacedKey.fromString(namespacedKeyString);
+        if (namespacedKey == null) throw new SerializationException(type, "Invalid key");
+        return namespacedKey;
     }
 
     @Override
