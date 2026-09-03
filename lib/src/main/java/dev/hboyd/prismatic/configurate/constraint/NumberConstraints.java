@@ -57,6 +57,14 @@ public final class NumberConstraints {
         };
     }
 
+    private static int compare(final Number number, final double bound) {
+        return switch (number) {
+            case final BigDecimal bigDecimal -> bigDecimal.compareTo(BigDecimal.valueOf(bound));
+            case final BigInteger bigInteger -> bigInteger.compareTo(BigInteger.valueOf((long) bound));
+            default -> Double.compare(number.doubleValue(), bound);
+        };
+    }
+
     /**
      * Constrains the annotated {@link Number} to a positive value ({@code N > 0}) when being loaded by an
      * {@link ObjectMapper}.
@@ -149,23 +157,54 @@ public final class NumberConstraints {
         /**
          * Get inclusive minimum value that the constrained {@link Number} can be.
          *
+         * <p>If {@code minDecimal} is set to a value other than {@code Double.NaN} (its default) this value is
+         * ignored.</p>
+         *
          * @return the minimum value
          */
         long min() default Long.MIN_VALUE;
 
         /**
+         * Get inclusive minimum value that the constrained {@link Number} can be.
+         *
+         * <p>This value is only considered when it is set to a value other than {@code Double.NaN} (its default).</p>
+         *
+         * @return the minimum value
+         */
+        double minDecimal() default Double.NaN;
+
+        /**
          * Get inclusive maximum value that the constrained {@link Number} can be.
+         *
+         * <p>This value is only considered when {@code minDecimal} is set to {@code Double.NaN} (its default).</p>
          *
          * @return the maximum value
          */
         long max() default Long.MAX_VALUE;
+
+        /**
+         * Get inclusive maximum value that the constrained {@link Number} can be.
+         *
+         * <p>This value is only considered when it is set to a value other than {@code Double.NaN} (its default).</p>
+         *
+         * @return the maximum value
+         */
+        double maxDecimal() default Double.NaN;
 
         @SuppressWarnings("checkstyle:MissingJavadocType")
         final class Factory implements Constraint.Factory<NumberConstraints.Bound, Number> {
             @Override
             public Constraint<Number> make(final NumberConstraints.Bound data, final Type type) {
                 return value -> {
-                    if (value != null && (compare(value, data.min()) < 0 || compare(value, data.max()) > 0))
+                    if (value == null) return;
+
+                    final boolean isOutOfMinBound = Double.isNaN(data.minDecimal())
+                            ? compare(value, data.min()) < 0
+                            : compare(value, data.minDecimal()) < 0;
+                    final boolean isOutOfMaxBound = Double.isNaN(data.maxDecimal())
+                            ? compare(value, data.max()) > 0
+                            : compare(value, data.maxDecimal()) > 0;
+                    if (isOutOfMinBound || isOutOfMaxBound)
                         throw new SerializationException(value.intValue() + " is outside the bounds of (" + data.min() + ", " + data.max() + ")");
                 };
             }
