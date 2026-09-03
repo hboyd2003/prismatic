@@ -19,10 +19,6 @@
 package dev.hboyd.prismatic.text;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.Style;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * {@link Component} related utilities.
@@ -36,16 +32,9 @@ public final class ComponentUtil {
      * @param component the component to strip
      * @return a new component with no color styling
      */
-    public static Component stripColor(Component component) {
-        final Style style = Style.style().build();
-        style.merge(component.style(), Style.Merge.SHADOW_COLOR, Style.Merge.DECORATIONS, Style.Merge.EVENTS, Style.Merge.INSERTION, Style.Merge.FONT);
-        component = component.style(style);
-
-        final List<Component> children = new ArrayList<>();
-        for (int i = 0; i < component.children().size(); i++) {
-            children.add(ComponentUtil.stripColor(component.children().get(i)));
-        }
-
-        return component.children(children);
+    public static Component stripColor(final Component component) {
+        return component.color(null).children(component.children().stream()
+                .map(ComponentUtil::stripColor)
+                .toList());
     }
 }
