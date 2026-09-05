@@ -154,7 +154,7 @@ public sealed interface PaginatedListComponent extends ComponentLike permits Pag
      * @param audience an audience
      */
     default void sendAsMessage(final Audience audience) {
-        this.sendAsMessage(0, audience);
+        this.sendAsMessage(1, audience);
     }
 
     /**
