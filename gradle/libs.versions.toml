@@ -13,7 +13,7 @@ configurate= "4.2.0"
 configurateNBT = "1.0.0"
 gson = "2.14.0"
 guava = "33.6.0-jre"
-chasm = "1.0.0"
+chasm = "1.1.0"
 
 jetbrainsAnnotations = "26.1.0"
 jspecify = "1.0.1"
