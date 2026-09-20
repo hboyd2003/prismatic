@@ -139,7 +139,7 @@ public final class PaginatedListComponentImpl implements PaginatedListComponent 
                             UIContainer.CHAT.width(),
                             Locale.getDefault()));
 
-        return builder.build();
+        return ComponentUtil.build(builder);
     }
 
     private Component transformVirtualComponentCallback(Component component, final int page) {
