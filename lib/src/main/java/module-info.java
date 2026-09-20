@@ -4,7 +4,7 @@
 module dev.hboyd.prismatic.lib {
     requires transitive brigadier;
     requires transitive chasm.chasm.lib.main;
-    requires transitive configurate.nbt;
+    requires transitive dev.hboyd.configurate_nbt;
     requires transitive org.checkerframework.checker.qual;
     requires transitive org.jetbrains.annotations;
     requires transitive org.jspecify;

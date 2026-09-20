@@ -18,7 +18,7 @@
 
 package dev.hboyd.prismatic.configurate;
 
-import dev.hboyd.configurateNBT.serializer.BinaryTagSerializer;
+import dev.hboyd.configurate_nbt.serializer.BinaryTagSerializer;
 import dev.hboyd.prismatic.configurate.constraint.CollectionConstraints;
 import dev.hboyd.prismatic.configurate.constraint.NumberConstraints;
 import dev.hboyd.prismatic.configurate.constraint.StringConstraints;
