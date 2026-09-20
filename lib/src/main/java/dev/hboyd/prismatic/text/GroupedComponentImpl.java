@@ -77,21 +77,17 @@ public final class GroupedComponentImpl implements GroupedComponent {
 
     @Override
     public Component asComponent() {
-        return Component.text()
-                .append(ComponentSpacer.alignCenter(Component.text()
-                                .append(this.style.titlePrefix())
-                                .append(this.title)
-                                .append(this.style.titleSuffix())
-                                .build(),
+        return Component.textOfChildren(
+                ComponentSpacer.alignCenter(
+                        Component.textOfChildren(this.style.titlePrefix(), this.title, this.style.titleSuffix()),
                         this.style.spacingGlyph(),
-                        this.style.widthProvider()))
-                .appendNewline()
-                .append(this.content)
-                .appendNewline()
-                .append(ComponentSpacer.alignCenter(Component.empty(),
+                        this.style.widthProvider()),
+                Component.newline(),
+                this.content,
+                Component.newline(),
+                ComponentSpacer.alignCenter(Component.empty(),
                         this.style.spacingGlyph(),
-                        this.style.widthProvider()))
-                .build();
+                        this.style.widthProvider()));
     }
 
     @Override
