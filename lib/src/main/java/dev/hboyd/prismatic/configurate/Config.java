@@ -183,7 +183,7 @@ public abstract class Config {
      * @throws SerializationException when unable to map values to a node
      */
     @EnsuresNonNull({"filePath", "loader", "objectMapper", "defaultConfigNode"})
-    protected void initialize() throws IOException, ConfigurateException, SerializationException {
+    protected final void initialize() throws IOException, ConfigurateException, SerializationException {
         if (this.initialized) throw new IllegalStateException("Config has already been initialized");
 
         this.defaultConfigNode = this.loader.createNode();
@@ -200,7 +200,7 @@ public abstract class Config {
      *
      * @return the version
      */
-    public int version() {
+    public final int version() {
         return this.version;
     }
 
@@ -209,7 +209,7 @@ public abstract class Config {
      *
      * @return the latest version
      */
-    public int latestVersion() {
+    public final int latestVersion() {
         return this.latestVersion;
     }
 
