@@ -18,7 +18,7 @@
 
 package dev.hboyd.prismatic.paper.configurate.serializer;
 
-import net.kyori.adventure.nbt.BinaryTagIO;
+import dev.hboyd.prismatic.paper.ItemStackUtil;
 import net.kyori.adventure.nbt.CompoundBinaryTag;
 import org.bukkit.inventory.ItemStack;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -27,8 +27,6 @@ import org.spongepowered.configurate.ConfigurationOptions;
 import org.spongepowered.configurate.serialize.SerializationException;
 import org.spongepowered.configurate.serialize.TypeSerializer;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
 
@@ -45,14 +43,11 @@ public class ItemStackSerializer implements TypeSerializer<ItemStack> {
         final CompoundBinaryTag itemStackTag = node.options().serializers().get(CompoundBinaryTag.class)
                 .deserialize(CompoundBinaryTag.class, node);
 
-        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
-            BinaryTagIO.writer().write(itemStackTag, outputStream, BinaryTagIO.Compression.GZIP);
+            return ItemStackUtil.fromCompoundBinaryTag(itemStackTag);
         } catch (final IOException e) {
-            throw new SerializationException(e);
+            throw new SerializationException(node, type, e);
         }
-
-        return ItemStack.deserializeBytes(outputStream.toByteArray());
     }
 
     @Override
@@ -61,9 +56,9 @@ public class ItemStackSerializer implements TypeSerializer<ItemStack> {
 
         final CompoundBinaryTag itemStackTag;
         try {
-            itemStackTag = BinaryTagIO.reader().read(new ByteArrayInputStream(itemStack.serializeAsBytes()), BinaryTagIO.Compression.GZIP);
+            itemStackTag = ItemStackUtil.asCompoundBinaryTag(itemStack);
         } catch (final IOException e) {
-            throw new SerializationException(e);
+            throw new SerializationException(node, type, e);
         }
 
         node.options().serializers().get(CompoundBinaryTag.class).serialize(CompoundBinaryTag.class, itemStackTag, node);
