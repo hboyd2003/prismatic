@@ -18,6 +18,12 @@
 
 package dev.hboyd.prismatic.paper.persistent_data;
 
+import dev.hboyd.prismatic.paper.persistent_data.type.ItemStackPersistentDataType;
+import dev.hboyd.prismatic.paper.persistent_data.type.PotionEffectPersistentDataType;
+import dev.hboyd.prismatic.paper.persistent_data.type.ProfilePropertyPersistentDataType;
+import dev.hboyd.prismatic.paper.persistent_data.type.SerializedComponentPersistentDataType;
+import dev.hboyd.prismatic.paper.persistent_data.type.TextColorPersistentDataType;
+import dev.hboyd.prismatic.paper.persistent_data.type.UUIDPersistentDataType;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.format.ShadowColor;
 import org.bukkit.NamespacedKey;
@@ -60,6 +66,14 @@ public final class PersistentDataTypeRegistry {
         register(new SimplePersistentDataType<>(NamespacedKey.class,
                 NamespacedKey::asString,
                 NamespacedKey::fromString));
+
+        // Complex types
+        register(ItemStackPersistentDataType.INSTANCE);
+        register(PotionEffectPersistentDataType.INSTANCE);
+        register(ProfilePropertyPersistentDataType.INSTANCE);
+        register(SerializedComponentPersistentDataType.MINIMESSAGE);
+        register(TextColorPersistentDataType.INSTANCE);
+        register(UUIDPersistentDataType.INSTANCE);
 
         @SuppressWarnings("rawtypes") final ServiceLoader<PersistentDataType> persistentDataTypeServiceLoader =
                 ServiceLoader.load(PersistentDataType.class);
