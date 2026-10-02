@@ -22,6 +22,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.jspecify.annotations.Nullable;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -52,8 +53,9 @@ public final class ItemStackPersistentDataType implements PersistentDataType<Per
     }
 
     @Override
-    public PersistentDataContainer toPrimitive(final ItemStack itemStack, final PersistentDataAdapterContext context) {
+    public PersistentDataContainer toPrimitive(final @Nullable ItemStack itemStack, final PersistentDataAdapterContext context) {
         final PersistentDataContainer itemStackPDC = context.newPersistentDataContainer();
+        if (itemStack == null || itemStack.isEmpty()) return itemStackPDC;
         final byte[] itemStackCompressedNBTBytes = itemStack.serializeAsBytes();
 
         // PDC expects uncompressed NBT while ItemStack expects GZIP compressed NBT
