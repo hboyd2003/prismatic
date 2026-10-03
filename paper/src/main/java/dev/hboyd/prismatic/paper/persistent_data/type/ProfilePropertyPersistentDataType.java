@@ -26,6 +26,8 @@ import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.util.Objects;
+
 /**
  * Persistent data type for {@link net.kyori.adventure.text.object.PlayerHeadObjectContents.ProfileProperty}s.
  *
@@ -52,7 +54,11 @@ public final class ProfilePropertyPersistentDataType implements PersistentDataTy
     }
 
     @Override
-    public PersistentDataContainer toPrimitive(final PlayerHeadObjectContents.ProfileProperty profileProperty, final PersistentDataAdapterContext context) {
+    public PersistentDataContainer toPrimitive(final PlayerHeadObjectContents.ProfileProperty profileProperty,
+                                               final PersistentDataAdapterContext context) {
+        Objects.requireNonNull(profileProperty, "profileProperty");
+        Objects.requireNonNull(context, "context");
+
         final PersistentDataContainer profilePropertyPDC = context.newPersistentDataContainer();
 
         profilePropertyPDC.set(PROFILE_PROPERTY_NAME, PersistentDataType.STRING, profileProperty.name());
@@ -65,7 +71,11 @@ public final class ProfilePropertyPersistentDataType implements PersistentDataTy
     }
 
     @Override
-    public PlayerHeadObjectContents.ProfileProperty fromPrimitive(final PersistentDataContainer profilePropertyPDC, final PersistentDataAdapterContext context) {
+    public PlayerHeadObjectContents.ProfileProperty fromPrimitive(final PersistentDataContainer profilePropertyPDC,
+                                                                  final PersistentDataAdapterContext context) {
+        Objects.requireNonNull(profilePropertyPDC, "profilePropertyPDC");
+        Objects.requireNonNull(context, "context");
+
         String signature = null;
         if (profilePropertyPDC.has(PROFILE_PROPERTY_SIGNATURE))
             signature = profilePropertyPDC.get(PROFILE_PROPERTY_SIGNATURE, PersistentDataType.STRING);

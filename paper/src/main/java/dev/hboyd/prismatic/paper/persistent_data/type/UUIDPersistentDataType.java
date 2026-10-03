@@ -21,6 +21,7 @@ package dev.hboyd.prismatic.paper.persistent_data.type;
 import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.jspecify.annotations.Nullable;
 
 import java.nio.ByteBuffer;
 import java.util.UUID;
@@ -47,7 +48,7 @@ public final class UUIDPersistentDataType implements PersistentDataType<byte[], 
     }
 
     @Override
-    public byte[] toPrimitive(final UUID complex, final PersistentDataAdapterContext context) {
+    public byte[] toPrimitive(final @Nullable UUID complex, final PersistentDataAdapterContext context) {
         final ByteBuffer bb = ByteBuffer.wrap(new byte[16]);
 
         bb.putLong(complex.getMostSignificantBits());

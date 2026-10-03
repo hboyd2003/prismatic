@@ -21,6 +21,7 @@ package dev.hboyd.prismatic.paper.persistent_data;
 import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.util.Objects;
 import java.util.function.Function;
 
 /**
@@ -43,9 +44,9 @@ public class SimplePersistentDataType<T> implements PersistentDataType<String, T
     public SimplePersistentDataType(final Class<T> type,
                                     final Function<T, String> toPrimitiveFunction,
                                     final Function<String, T> fromPrimitiveFunction) {
-        this.type = type;
-        this.toPrimitiveFunction = toPrimitiveFunction;
-        this.fromPrimitiveFunction = fromPrimitiveFunction;
+        this.type = Objects.requireNonNull(type, "type");
+        this.toPrimitiveFunction = Objects.requireNonNull(toPrimitiveFunction, "toPrimitiveFunction");
+        this.fromPrimitiveFunction = Objects.requireNonNull(fromPrimitiveFunction, "fromPrimitiveFunction");
     }
 
     /**

@@ -27,6 +27,7 @@ import org.jspecify.annotations.Nullable;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
@@ -53,7 +54,10 @@ public final class ItemStackPersistentDataType implements PersistentDataType<Per
     }
 
     @Override
-    public PersistentDataContainer toPrimitive(final @Nullable ItemStack itemStack, final PersistentDataAdapterContext context) {
+    public PersistentDataContainer toPrimitive(final @Nullable ItemStack itemStack,
+                                               final PersistentDataAdapterContext context) {
+        Objects.requireNonNull(context, "context");
+
         final PersistentDataContainer itemStackPDC = context.newPersistentDataContainer();
         if (itemStack == null || itemStack.isEmpty()) return itemStackPDC;
         final byte[] itemStackCompressedNBTBytes = itemStack.serializeAsBytes();
@@ -74,6 +78,7 @@ public final class ItemStackPersistentDataType implements PersistentDataType<Per
     @Override
     public ItemStack fromPrimitive(final PersistentDataContainer itemStackPDC,
                                    final PersistentDataAdapterContext context) {
+        Objects.requireNonNull(context, "context");
         if (itemStackPDC.isEmpty()) return ItemStack.empty();
 
         // PDC expects uncompressed NBT while ItemStack expects GZIP compressed NBT

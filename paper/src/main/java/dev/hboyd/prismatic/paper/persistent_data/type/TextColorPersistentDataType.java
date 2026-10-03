@@ -54,16 +54,22 @@ public final class TextColorPersistentDataType implements PersistentDataType<Str
 
     @Override
     public String toPrimitive(final TextColor textColor, final PersistentDataAdapterContext context) {
+        Objects.requireNonNull(textColor, "textColor");
+        Objects.requireNonNull(context, "context");
+
         if (textColor instanceof final NamedTextColor namedTextColor) return namedTextColor.toString();
 
         return textColor.asHexString();
     }
 
     @Override
-    public TextColor fromPrimitive(final String data, final PersistentDataAdapterContext context) {
-        if (!data.startsWith(TextColor.HEX_PREFIX))
-            return Objects.requireNonNull(NamedTextColor.NAMES.value(data));
+    public TextColor fromPrimitive(final String textColorString, final PersistentDataAdapterContext context) {
+        Objects.requireNonNull(textColorString, "textColorString");
+        Objects.requireNonNull(context, "context");
 
-        return TextColor.fromHexString(data);
+        if (!textColorString.startsWith(TextColor.HEX_PREFIX))
+            return Objects.requireNonNull(NamedTextColor.NAMES.value(textColorString));
+
+        return TextColor.fromHexString(textColorString);
     }
 }

@@ -62,11 +62,15 @@ public final class SerializedComponentPersistentDataType implements PersistentDa
 
     @Override
     public String toPrimitive(final Component component, final PersistentDataAdapterContext context) {
+        if (component == null || component.equals(Component.empty())) return "";
+
         return this.serializer.serialize(component);
     }
 
     @Override
     public Component fromPrimitive(final String data, final PersistentDataAdapterContext context) {
+        if (data == null || data.isEmpty()) return Component.empty();
+
         return this.serializer.deserialize(data);
     }
 }

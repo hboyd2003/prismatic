@@ -26,7 +26,8 @@ import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
-import org.jspecify.annotations.NullMarked;
+
+import java.util.Objects;
 
 /**
  * Persistent data type for {@link PotionEffect}s.
@@ -59,8 +60,11 @@ public final class PotionEffectPersistentDataType implements PersistentDataType<
     }
 
     @Override
-    @NullMarked
-    public PersistentDataContainer toPrimitive(final PotionEffect potionEffect, final PersistentDataAdapterContext context) {
+    public PersistentDataContainer toPrimitive(final PotionEffect potionEffect,
+                                               final PersistentDataAdapterContext context) {
+        Objects.requireNonNull(potionEffect, "potionEffect");
+        Objects.requireNonNull(context, "context");
+
         final PersistentDataContainer potionEffectPDC = context.newPersistentDataContainer();
 
         potionEffectPDC.set(TYPE, PersistentDataTypeRegistry.get(Key.class), potionEffect.getType().key());
@@ -76,8 +80,11 @@ public final class PotionEffectPersistentDataType implements PersistentDataType<
     }
 
     @Override
-    @NullMarked
-    public PotionEffect fromPrimitive(final PersistentDataContainer potionEffectPDC, final PersistentDataAdapterContext context) {
+    public PotionEffect fromPrimitive(final PersistentDataContainer potionEffectPDC,
+                                      final PersistentDataAdapterContext context) {
+        Objects.requireNonNull(potionEffectPDC, "potionEffectPDC");
+        Objects.requireNonNull(context, "context");
+
         PotionEffect hiddenPotionEffect = null;
         if (potionEffectPDC.has(HIDDEN_EFFECT, this)) {
             hiddenPotionEffect = potionEffectPDC.get(HIDDEN_EFFECT, this);
