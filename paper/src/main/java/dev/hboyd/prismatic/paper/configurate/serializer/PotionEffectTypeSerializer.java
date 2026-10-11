@@ -32,10 +32,10 @@ import java.util.function.Predicate;
 /**
  * Configurate serializer for {@link PotionEffectType}s.
  */
-public class PotionEffectTypeSerializer extends ScalarSerializer<PotionEffectType> {
+final public class PotionEffectTypeSerializer extends ScalarSerializer<PotionEffectType> {
     public static final PotionEffectTypeSerializer INSTANCE = new PotionEffectTypeSerializer();
 
-    protected PotionEffectTypeSerializer() {
+    private PotionEffectTypeSerializer() {
         super(PotionEffectType.class);
     }
 
