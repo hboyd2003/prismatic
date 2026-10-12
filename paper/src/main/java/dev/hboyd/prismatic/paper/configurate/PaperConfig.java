@@ -23,9 +23,11 @@ import dev.hboyd.prismatic.paper.configurate.serializer.BukkitVectorSerializer;
 import dev.hboyd.prismatic.paper.configurate.serializer.ItemStackSerializer;
 import dev.hboyd.prismatic.paper.configurate.serializer.LocationSerializer;
 import dev.hboyd.prismatic.paper.configurate.serializer.NamespacedKeySerializer;
+import dev.hboyd.prismatic.paper.configurate.serializer.PotionEffectTypeSerializer;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 import org.jspecify.annotations.Nullable;
 import org.spongepowered.configurate.serialize.TypeSerializerCollection;
@@ -48,6 +50,7 @@ public abstract class PaperConfig extends Config {
             .register(ItemStack.class, ItemStackSerializer.INSTANCE)
             .register(Location.class, LocationSerializer.INSTANCE)
             .register(NamespacedKey.class, NamespacedKeySerializer.INSTANCE)
+            .register(PotionEffectType.class, PotionEffectTypeSerializer.INSTANCE)
             .build();
 
     protected PaperConfig(final Path filePath,
