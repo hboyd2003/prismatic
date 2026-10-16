@@ -77,3 +77,9 @@ http-client.private.env.json
 
 # Pylint IntelliJ plugin
 .idea/**/PylintPlugin.xml
+
+# AI Commit IntelliJ plugin
+.idea/**/AICommit.xml
+
+# Conventional Commit plugin
+.idea/**/conventionalCommit.xml
