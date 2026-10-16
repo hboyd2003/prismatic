@@ -37,8 +37,7 @@ public final class CommandSuggestionUtil {
     }
 
     /**
-     * Matches text possibly surrounded by quotes.
-     * Groups:
+     * Matches text possibly surrounded by quotes. Groups:
      * <ol>
      *     <li>Starting double-quote (if-any)</li>
      *     <li>Text</li>
@@ -49,25 +48,25 @@ public final class CommandSuggestionUtil {
 
     /**
      * Convenience method. Same as
-     * {@link #suggestFromList(SuggestionsBuilder, Collection, Function, Function, Predicate)} with the tooltip function
-     * and filter predicate as {@code null}
+     * {@link #suggestFromList(SuggestionsBuilder, Collection, Function, Function, Predicate, boolean)} with the tooltip
+     * function and filter predicate as {@code null} and suggesting quotes.
      *
      * @param builder the {@link SuggestionsBuilder} used to accumulate suggestions and get user input
      * @param list    the collection of objects to suggest from
      * @param getName a function mapping each object to its string representation (used for matching and display)
      * @param <T>     the type of the elements in the provided collection
-     * @see #suggestFromList(SuggestionsBuilder, Collection, Function, Function, Predicate)
+     * @see #suggestFromList(SuggestionsBuilder, Collection, Function, Function, Predicate, boolean)
      */
     public static <T> void suggestFromList(final SuggestionsBuilder builder,
                                            final Collection<T> list,
                                            final Function<T, String> getName) {
-        suggestFromList(builder, list, getName, null, null);
+        suggestFromList(builder, list, getName, null, null, true);
     }
 
     /**
      * Convenience method. Same as
-     * {@link #suggestFromList(SuggestionsBuilder, Collection, Function, Function, Predicate)} with the filter predicate
-     * as {@code null}
+     * {@link #suggestFromList(SuggestionsBuilder, Collection, Function, Function, Predicate, boolean)} with the filter
+     * predicate as {@code null} and suggesting quotes.
      *
      * @param builder         the {@link SuggestionsBuilder} used to accumulate suggestions and get user input
      * @param list            the collection of objects to suggest from
@@ -76,13 +75,37 @@ public final class CommandSuggestionUtil {
      * @param tooltipFunction an optional function mapping each object to a {@link Message} used as the tooltip of the
      *                        suggestion; may be {@code null} if no tooltip should be shown
      * @param <T>             the type of the elements in the provided collection
-     * @see #suggestFromList(SuggestionsBuilder, Collection, Function, Function, Predicate)
+     * @see #suggestFromList(SuggestionsBuilder, Collection, Function, Function, Predicate, boolean)
      */
     public static <T> void suggestFromList(final SuggestionsBuilder builder,
                                            final Collection<T> list,
                                            final Function<T, String> nameFunction,
                                            @Nullable final Function<T, Message> tooltipFunction) {
-        suggestFromList(builder, list, nameFunction, tooltipFunction, null);
+        suggestFromList(builder, list, nameFunction, tooltipFunction, null, true);
+    }
+
+    /**
+     * Convenience method. Same as
+     * {@link #suggestFromList(SuggestionsBuilder, Collection, Function, Function, Predicate, boolean)} and suggesting
+     * quotes.
+     *
+     * @param builder         the {@link SuggestionsBuilder} used to accumulate suggestions and get user input
+     * @param list            the collection of objects to suggest from
+     * @param nameFunction    a function mapping each object to its string representation (used for matching and
+     *                        display)
+     * @param tooltipFunction an optional function mapping each object to a {@link Message} used as the tooltip of the
+     *                        suggestion; may be {@code null} if no tooltip should be shown
+     * @param filter          an optional predicate used to determine whether an object should be included in the
+     *                        suggestions
+     * @param <T>             the type of the elements in the provided collection
+     * @see #suggestFromList(SuggestionsBuilder, Collection, Function, Function, Predicate, boolean)
+     */
+    public static <T> void suggestFromList(final SuggestionsBuilder builder,
+                                           final Collection<T> list,
+                                           final Function<T, String> nameFunction,
+                                           @Nullable final Function<T, Message> tooltipFunction,
+                                           @Nullable final Predicate<T> filter) {
+        suggestFromList(builder, list, nameFunction, tooltipFunction, filter, true);
     }
 
     /**
@@ -104,7 +127,7 @@ public final class CommandSuggestionUtil {
      *
      * // If the user has already started with a quote: "pla
      * // Suggestions: ["player, "player 1"]
-     * }
+     *}
      * </p>
      *
      * @param builder         the {@link SuggestionsBuilder} used to accumulate suggestion results and get user input
@@ -115,13 +138,16 @@ public final class CommandSuggestionUtil {
      *                        suggestion; may be {@code null} if no tooltip should be shown
      * @param filter          an optional predicate used to determine whether an object should be included in the
      *                        suggestions
+     * @param suggestQuotes   whether to wrap arguments with quotes if they contain characters not-allowed in an
+     *                        un-quoted string argument
      * @param <T>             the type of the elements in the provided collection
      */
     public static <T> void suggestFromList(final SuggestionsBuilder builder,
                                            final Collection<T> list,
                                            final Function<T, String> nameFunction,
                                            @Nullable final Function<T, Message> tooltipFunction,
-                                           @Nullable final Predicate<T> filter) {
+                                           @Nullable final Predicate<T> filter,
+                                           final boolean suggestQuotes) {
         final Matcher inputMatcher = GROUPED_QUOTES.matcher(builder.getRemaining());
         inputMatcher.find();
         final String prefix = inputMatcher.group(1);
@@ -134,7 +160,7 @@ public final class CommandSuggestionUtil {
             if (name.startsWith(input) && filterResult) {
                 String tempPrefix = prefix;
                 String tempSuffix = suffix;
-                if (name.chars().anyMatch(integer -> !StringReader.isAllowedInUnquotedString((char) integer))) {
+                if (suggestQuotes && name.chars().anyMatch(integer -> !StringReader.isAllowedInUnquotedString((char) integer))) {
                     tempPrefix = "\"";
                     tempSuffix = "\"";
                 }
