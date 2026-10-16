@@ -19,6 +19,7 @@
 package dev.hboyd.prismatic.brigadier;
 
 import com.mojang.brigadier.Message;
+import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import org.jspecify.annotations.Nullable;
 
@@ -34,11 +35,6 @@ import java.util.regex.Pattern;
 public final class CommandSuggestionUtil {
     private CommandSuggestionUtil() {
     }
-
-    /**
-     * Pattern that matches any non-alphanumeric ASCII character.
-     */
-    public static final Pattern NON_ASCII_ALPHANUMERIC = Pattern.compile("[^A-Za-z0-9]");
 
     /**
      * Matches text possibly surrounded by quotes.
@@ -138,7 +134,7 @@ public final class CommandSuggestionUtil {
             if (name.startsWith(input) && filterResult) {
                 String tempPrefix = prefix;
                 String tempSuffix = suffix;
-                if (NON_ASCII_ALPHANUMERIC.matcher(name).find()) {
+                if (name.chars().anyMatch(integer -> !StringReader.isAllowedInUnquotedString((char) integer))) {
                     tempPrefix = "\"";
                     tempSuffix = "\"";
                 }
