@@ -9,6 +9,8 @@ module dev.hboyd.prismatic.lib {
     requires transitive org.jetbrains.annotations;
     requires transitive org.jspecify;
     requires transitive org.spongepowered.configurate;
+    requires transitive net.kyori.adventure.api;
+    requires transitive net.kyori.adventure.key;
 
     requires com.google.common;
     requires com.google.gson;
