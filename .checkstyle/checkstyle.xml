@@ -151,6 +151,21 @@
         <!-- https://checkstyle.org/config_javadoc.html#JavadocMissingWhitespaceAfterAsterisk -->
         <module name="JavadocTagContinuationIndentation"/>
 
+        <!-- https://checkstyle.org/checks/javadoc/javadocparamorder.html#JavadocParamOrder -->
+        <module name="JavadocParamOrder"/>
+
+        <!-- https://checkstyle.org/checks/javadoc/javadocleadingasteriskalign.html#JavadocLeadingAsteriskAlign -->
+        <module name="JavadocLeadingAsteriskAlign" />
+
+        <!-- https://checkstyle.org/checks/javadoc/prefercodeorsnippetjavadocinlinetag.html#PreferCodeOrSnippetJavadocInlineTag -->
+        <module name="PreferCodeOrSnippetJavadocInlineTag"/>
+
+        <!-- https://checkstyle.org/checks/imports/unnecessaryfullyqualifiedtype.html#UnnecessaryFullyQualifiedType -->
+        <module name="UnnecessaryFullyQualifiedTypeCheck"/>
+
+        <!-- https://checkstyle.org/checks/imports/avoidmoduleimport.html#AvoidModuleImport -->
+        <module name="AvoidModuleImport"/>
+
         <!-- https://checkstyle.org/config_blocks.html#LeftCurly -->
         <module name="LeftCurly"/>
 
@@ -259,6 +274,9 @@
         <module name="SingleSpaceSeparator">
             <property name="validateComments" value="true"/>
         </module>
+
+        <!-- https://checkstyle.org/checks/misc/upperell.html -->
+        <module name="UpperEll"/>
 
         <!-- https://checkstyle.org/config_javadoc.html#SummaryJavadoc -->
         <module name="SummaryJavadoc"/>
