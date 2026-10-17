@@ -1,7 +1,7 @@
 [versions]
 # Gradle Plugins
 indra = "4.2.0-SNAPSHOT"
-checkstyle = "14.1.0"
+checkstyle = "14.3.0"
 gitSimpleSemver = "2.5.0"
 extraJavaModuleInfo = "1.14.2"
 
