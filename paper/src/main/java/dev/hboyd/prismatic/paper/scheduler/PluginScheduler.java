@@ -90,8 +90,8 @@ public final class PluginScheduler extends AbstractPluginScheduler {
      *     isDone() method returns true.</li>
      * </ul>
      *
-     * @param task Task to be executed
      * @param <T>  the result type of execution
+     * @param task Task to be executed
      * @return Future object related to the task
      */
     public <T> Future<T> callSyncMethod(final Callable<T> task) {

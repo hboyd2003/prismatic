@@ -110,9 +110,9 @@ public final class PersistentDataTypeRegistry {
     /**
      * Retrieves the registered {@link PersistentDataType} for the specified class.
      *
-     * @param type the class to get for
      * @param <P> the primitive type of the persistent data type
      * @param <C> the complex type of the persistent data type
+     * @param type the class to get for
      * @return the persistent data type associated with the specified class
      * @throws NoSuchElementException if no persistent data type is registered for the specified class
      */

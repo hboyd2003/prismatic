@@ -52,10 +52,10 @@ public class SimplePersistentDataType<T> implements PersistentDataType<String, T
     /**
      * Creates a new SimplePersistentDataType and registers it in the {@link PersistentDataTypeRegistry}.
      *
+     * @param <T>                   the complex type being mapped to a string
      * @param type                  the class of the complex type being mapped
      * @param toPrimitiveFunction   the function used to serialize the complex type to a string
      * @param fromPrimitiveFunction the function used to deserialize a string back into the complex type
-     * @param <T>                   the complex type being mapped to a string
      * @return the created SimplePersistentDataType instance
      */
     public static <T> SimplePersistentDataType<T> createAndRegister(final Class<T> type,

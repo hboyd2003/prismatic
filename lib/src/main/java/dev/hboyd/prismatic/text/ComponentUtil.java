@@ -57,9 +57,9 @@ public final class ComponentUtil {
     /**
      * Builds the given builder reflectively. Used to avoid issues when running with Adventure 4.
      *
-     * @param builder the builder
      * @param <C>     the component type
      * @param <B>     the builder type
+     * @param builder the builder
      * @return a component
      */
     @ApiStatus.Experimental
